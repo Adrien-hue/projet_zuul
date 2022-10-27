@@ -1,0 +1,41 @@
+Class documentation
+<---- javadoc command: ---->
+/usr/share/bluej/jdk/bin/javadoc
+-author
+-version
+-nodeprecated
+-package
+-Xdoclint:none
+-noindex
+-notree
+-nohelp
+-nonavbar
+-source
+11
+-classpath
+/usr/share/bluej/bluejcore.jar:/usr/share/bluej/junit-jupiter-engine-5.5.2.jar:/usr/share/bluej/junit-vintage-engine-5.5.2.jar:/usr/share/bluej/junit-jupiter-api-5.5.2.jar:/usr/share/bluej/junit-platform-console-standalone-1.5.2.jar:/usr/share/bluej/junit-platform-runner-1.5.2.jar:/usr/share/bluej/junit-platform-reporting-1.5.2.jar:/usr/share/bluej/junit-platform-engine-1.5.2.jar:/usr/share/bluej/junit-platform-commons-1.5.2.jar:/usr/share/bluej/junit-quickcheck-core-0.9.jar:/usr/share/bluej/junit-platform-launcher-1.5.2.jar:/usr/share/bluej/junit-jupiter-params-5.5.2.jar:/usr/share/bluej/junit-jupiter-5.5.2.jar:/usr/share/bluej/junit-platform-testkit-1.5.2.jar:/usr/share/bluej/junit-platform-suite-api-1.5.2.jar:/usr/share/bluej/junit-jupiter-migrationsupport-5.5.2.jar:/usr/share/bluej/junit-platform-console-1.5.2.jar:/usr/share/bluej/hamcrest-core-1.3.jar:/usr/share/bluej/hamcrest-library-1.3.jar:/usr/share/bluej/lang-stride.jar:/usr/share/bluej/javafx/lib/javafx.base.jar:/usr/share/bluej/javafx/lib/javafx.controls.jar:/usr/share/bluej/javafx/lib/javafx.fxml.jar:/usr/share/bluej/javafx/lib/javafx.graphics.jar:/usr/share/bluej/javafx/lib/javafx.media.jar:/usr/share/bluej/javafx/lib/javafx.properties.jar:/usr/share/bluej/javafx/lib/javafx.swing.jar:/usr/share/bluej/javafx/lib/javafx.web.jar:/user/houeea/homedir/AP3/TP3/zuul-bad2
+-d
+/user/houeea/homedir/AP3/TP3/zuul-bad2/doc
+-encoding
+UTF-8
+-charset
+UTF-8
+/user/houeea/homedir/AP3/TP3/zuul-bad2/v1/Room.java
+<---- end of javadoc command ---->
+Loading source file /user/houeea/homedir/AP3/TP3/zuul-bad2/v1/Room.java...
+Constructing Javadoc information...
+Standard Doclet version 11.0.14.1
+Building tree for all the packages and classes...
+Generating /user/houeea/homedir/AP3/TP3/zuul-bad2/doc/v1/Room.html...
+/user/houeea/homedir/AP3/TP3/zuul-bad2/v1/Room.java:33: warning - @param argument "Room" is not a parameter name.
+/user/houeea/homedir/AP3/TP3/zuul-bad2/v1/Room.java:34: warning - @param argument "Room" is not a parameter name.
+/user/houeea/homedir/AP3/TP3/zuul-bad2/v1/Room.java:35: warning - @param argument "Room" is not a parameter name.
+/user/houeea/homedir/AP3/TP3/zuul-bad2/v1/Room.java:36: warning - @param argument "Room" is not a parameter name.
+Generating /user/houeea/homedir/AP3/TP3/zuul-bad2/doc/v1/package-summary.html...
+Generating /user/houeea/homedir/AP3/TP3/zuul-bad2/doc/constant-values.html...
+Building index for all the packages and classes...
+Building index for all classes...
+Generating /user/houeea/homedir/AP3/TP3/zuul-bad2/doc/allclasses.html...
+Generating /user/houeea/homedir/AP3/TP3/zuul-bad2/doc/allclasses.html...
+Generating /user/houeea/homedir/AP3/TP3/zuul-bad2/doc/index.html...
+4 warnings
