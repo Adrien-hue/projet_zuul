@@ -99,6 +99,13 @@ Dans une boutique de skateboard, Dem Bones doit monter sa nouvelle planche de sk
 
 ### II. Réponses aux exercices (à partir de l'exercice 7.5 inclus)
 
+#### Exercice 7.5
+
+1. L'exercice 7.4 est bien terminé. 
+
+4. Nous avons apporter cette modification afin d'optimiser le code et de ne pas le répéter. 
+    De plus, si nous devons effectué un changement dans l'affichage des information de la pièce (Room) courante, en changeant cette fonction seulement, la modification sera répercuté à tous les endroits nécessaires.
+
 ### III. Mode d'emploi (si nécessaire, instructions d'installation ou pour démarrer le jeu)
 
 ### IV. Déclaration obligatoire anti-plagiat (*)
