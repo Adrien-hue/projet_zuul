@@ -68,6 +68,7 @@ Dem BONES **achète** la plateau avec de **l'argent** et le vendeur lui **offre 
 - Place de la République, Paris
 - Place de la Bastille, Paris
 - Cosanostra Skatepark, Chelles
+- Skatepark intérieur boutique
 
 ---
 ## Rapport
@@ -79,6 +80,8 @@ Dem BONES **achète** la plateau avec de **l'argent** et le vendeur lui **offre 
 HOUEE Adrien, E3T année 2022 - 2023
 
 ### I.B) Thème (phrase-thème validée)
+
+Dans une boutique de skateboard, Dem Bones doit monter sa nouvelle planche de skateboard
 
 ### I.C) Résumé du scénario (complet)
 
