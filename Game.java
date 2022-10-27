@@ -1,5 +1,3 @@
-package v1;
-
 /**
  * Classe Game - le moteur du jeu d'aventure Zuul.
  *
@@ -23,21 +21,37 @@ public class Game
     private void createRooms()
     {
         // Declare all the rooms
-        Room vOutside = new Room("outside the main entrance of the university");
-        Room vTheatre = new Room("in a lecture theatre");
-        Room vPub = new Room("in the campus pub");
-        Room vLab = new Room("in a computing lab");
-        Room vOffice = new Room("in the computing admin office");
+        Room vComptoir = new Room("au comptoir de le boutique.");
+        Room vCaisse = new Room("à la caisse de la boutique.");
+        Room vMiroir = new Room("face au miroir.");
+        Room vEscalierRdC = new Room("dans les escaliers.");
         
-        // Init exists for each rooms
-        vOutside.setExits(null, vLab, vTheatre, vPub);
-        vTheatre.setExits(null, null, null, vOutside);
-        vPub.setExits(null, null, vOutside, null);
-        vLab.setExits(vOutside, null, vOffice, null);
-        vOffice.setExits(null, null, null, vLab);
+        Room vRayonPlanche = new Room("dans le rayon des plateaux de skateboard.");
+        Room vRayonRoulement = new Room("dans le rayon des roulements.");
+        Room vRayonRoue = new Room("dans le rayon des roues.");
+        
+        Room vRayonCruiser = new Room("dans le rayon des cruisers.");
+        Room vRayonHoodie = new Room("dans le rayon des hoodies.");
+        Room vRayonChaussure = new Room("dans le rayon des chaussures.");
+        Room vRayonSac = new Room("dans le rayon des sacs.");
+
+        // Init exists for each rooms : North, South, East, West
+        vComptoir.setExits(null, vCaisse, null, vRayonPlanche);
+        vCaisse.setExits(vComptoir, null, vRayonCruiser, null);
+        vMiroir.setExits(null, vRayonHoodie, vEscalierRdC, vRayonChaussure);
+        vEscalierRdC.setExits(null, vRayonRoue, null, vMiroir);
+
+        vRayonPlanche.setExits(null, null, vComptoir, null);
+        vRayonRoulement.setExits(vRayonRoue, null, null, vRayonCruiser);
+        vRayonRoue.setExits(vEscalierRdC, vRayonRoulement, null, null);
+
+        vRayonCruiser.setExits(vRayonHoodie, null, vRayonRoulement, vCaisse);
+        vRayonHoodie.setExits(vMiroir, vRayonCruiser, null, null);
+        vRayonChaussure.setExits(null, null, vMiroir, vRayonSac);
+        vRayonSac.setExits(null, null, vRayonChaussure, null);
         
         // Init starting room
-        this.aCurrentRoom = vOutside;
+        this.aCurrentRoom = vRayonCruiser;
     } // createRooms
     
     /**
