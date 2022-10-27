@@ -88,27 +88,8 @@ public class Game
         }
         
         this.aCurrentRoom = vNextRoom;
-        System.out.println("You are currently " + this.aCurrentRoom.getDescription());
         
-        // Display available exits
-        System.out.print("you can go : ");
-        if(this.aCurrentRoom.aNorthExit != null){
-            System.out.print("North ");
-        } 
-        
-        if(this.aCurrentRoom.aSouthExit != null){
-            System.out.print("South ");
-        }
-        
-        if(this.aCurrentRoom.aEastExit != null){
-            System.out.print("East ");
-        }
-        
-        if(this.aCurrentRoom.aWestExit != null){
-            System.out.print("West ");
-        }
-        
-        System.out.print("\n");
+        this.printLocationInfo();
     } // goRoom
     
     /**
@@ -118,27 +99,9 @@ public class Game
     {
         String vWelcome = "Welcome to the World of Zuul!\r\nWorld of Zuul is a new, incredibly boring adventure game.\r\nType 'help' if you need help.\r\n\r\n";
         
-        vWelcome += "You are " + this.aCurrentRoom.getDescription() + "\r\n";
-        
-        // Display available exits
-        vWelcome += "Exits : ";
-        if(this.aCurrentRoom.aNorthExit != null){
-            vWelcome += "North ";
-        } 
-        
-        if(this.aCurrentRoom.aSouthExit != null){
-            vWelcome += "South ";
-        }
-        
-        if(this.aCurrentRoom.aEastExit != null){
-            vWelcome += "East ";
-        }
-        
-        if(this.aCurrentRoom.aWestExit != null){
-            vWelcome  += "West ";
-        }
-        
         System.out.println(vWelcome);
+        
+        this.printLocationInfo();
     } // printWelcome
     
     /**
@@ -151,8 +114,32 @@ public class Game
         System.out.println(vHelp);
     } // printHelp
     
+    private void printLocationInfo(){
+        String vString = "You are " + this.aCurrentRoom.getDescription() + "\r\n";
+        
+        // Display available exits
+        vString += "Exits : ";
+        if(this.aCurrentRoom.aNorthExit != null){
+            vString += "North ";
+        } 
+        
+        if(this.aCurrentRoom.aSouthExit != null){
+            vString += "South ";
+        }
+        
+        if(this.aCurrentRoom.aEastExit != null){
+            vString += "East ";
+        }
+        
+        if(this.aCurrentRoom.aWestExit != null){
+            vString  += "West ";
+        }
+        
+        System.out.println(vString);
+    }
+    
     /**
-     * ??
+     * Quit the game
      * @param Command
      */
     private boolean quit(final Command pCommand)
