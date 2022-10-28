@@ -32,6 +32,10 @@ public class Room
         return this.aDescription;   
     } // getDescription
     
+    public String getLongDescription(){
+        return "You are " + this.getDescription() + "\r\n" + this.getExitString();
+    }
+    
     /**
      * Return the room in the specified direction pDirection
      * 
@@ -48,7 +52,7 @@ public class Room
      * @return String with available exits
      */
     public String getExitString(){
-        String vString = "You are " + this.getDescription() + "\r\nExits :";
+        String vString = "Exits :";
         
         Set<String> vKeys = this.aExits.keySet();
         

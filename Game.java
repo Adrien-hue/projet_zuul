@@ -136,7 +136,7 @@ public class Game
      * Print location informations for the player
      */
     private void printLocationInfo(){
-        String vString = this.aCurrentRoom.getExitString();
+        String vString = this.aCurrentRoom.getLongDescription();
         
         System.out.println(vString);
     }
