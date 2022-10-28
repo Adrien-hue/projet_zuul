@@ -118,6 +118,10 @@ Dans une boutique de skateboard, Dem Bones doit monter sa nouvelle planche de sk
 
 4. La procédure setExits est devenue inutile car elle n'est pas assez généraliste et limite les évolutions que l'on peut apporté au projet. Elle a été remplacer par setExit.
 
+#### Exercice 7.9
+
+3. la fonction keySet nous retourne l'ensemble des clés d'une HashMap
+
 ### III. Mode d'emploi (si nécessaire, instructions d'installation ou pour démarrer le jeu)
 
 ### IV. Déclaration obligatoire anti-plagiat (*)

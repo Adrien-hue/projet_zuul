@@ -24,7 +24,9 @@ public class Game
         Room vComptoir = new Room("au comptoir de le boutique.");
         Room vCaisse = new Room("à la caisse de la boutique.");
         Room vMiroir = new Room("face au miroir.");
-        Room vEscalierRdC = new Room("dans les escaliers.");
+        Room vEscalierRdC = new Room("dans les escaliers au rez-de-chaussé.");
+        Room vEscalierSousSol = new Room("dans les escaliers au sous sol.");
+        Room vEscalierEtage = new Room("dans les escaliers à l'étage.");
         
         Room vRayonPlanche = new Room("dans le rayon des plateaux de skateboard.");
         Room vRayonRoulement = new Room("dans le rayon des roulements.");
@@ -48,6 +50,8 @@ public class Game
         
         vEscalierRdC.setExit("south", vRayonRoue);
         vEscalierRdC.setExit("west", vMiroir);
+        vEscalierRdC.setExit("up", vEscalierEtage);
+        vEscalierRdC.setExit("down", vEscalierSousSol);
         
         vRayonPlanche.setExit("east", vComptoir);
         
