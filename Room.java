@@ -4,13 +4,18 @@ import java.util.Set;
 /**
  * Classe Room - un lieu du jeu d'aventure Zuul.
  *
- * @author votre nom
+ * @author HOUEE Adrien
  */
 public class Room
 {
     private String aDescription;
     private HashMap<String, Room> aExits;
     
+    /**
+     * Create new Room instance with description and no exit
+     * 
+     * @param String Description
+     */
     public Room(final String pDescription)
     {
         this.aDescription = pDescription;

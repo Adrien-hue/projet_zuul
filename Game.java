@@ -1,13 +1,16 @@
 /**
  * Classe Game - le moteur du jeu d'aventure Zuul.
  *
- * @author votre nom
+ * @author HOUEE Adrien
  */
 public class Game
 {
     private Room aCurrentRoom;
     private Parser aParser;
     
+    /**
+     * Create new Game instance
+     */
     public Game()
     {
         this.aParser= new Parser();
@@ -78,7 +81,9 @@ public class Game
     } // createRooms
     
     /**
+     * Navigate into a room
      * 
+     * @param Command Command to navigate
      */
     private void goRoom(final Command pCommand)
     {
@@ -127,6 +132,9 @@ public class Game
         System.out.println(vHelp);
     } // printHelp
     
+    /**
+     * Print location informations for the player
+     */
     private void printLocationInfo(){
         String vString = this.aCurrentRoom.getExitString();
         

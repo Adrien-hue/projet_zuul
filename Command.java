@@ -1,13 +1,19 @@
 /**
  * Classe Command - une commande du jeu d'aventure Zuul.
  *
- * @author votre nom
+ * @author HOUEE Adrien
  */
 public class Command
 {
     private String aCommandWord;
     private String aSecondWord;
     
+    /**
+     * Create new Command instance
+     * 
+     * @param String Principal word
+     * @param String Second word
+     */
     public Command(final String pCommandWord, final String pSecondWord)
     {
         this.aCommandWord = pCommandWord;
