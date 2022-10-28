@@ -166,6 +166,12 @@ public class Game
                 this.goRoom(pCommand);
             } else if(pCommand.getCommandWord().equalsIgnoreCase("help")){
                 this.printHelp();
+            } else if(pCommand.getCommandWord().equalsIgnoreCase("look")){
+                if(pCommand.hasSecondWord()){
+                    System.out.println("I don't know how to look at something in particular yet.");
+                } else {
+                    this.aCurrentRoom.getLongDescription();
+                }
             }
             return false;
         }

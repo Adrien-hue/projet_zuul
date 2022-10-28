@@ -32,6 +32,11 @@ public class Room
         return this.aDescription;   
     } // getDescription
     
+    /**
+     * Return the room description and availables exits
+     * 
+     * @return Room description and availables exits
+     */
     public String getLongDescription(){
         return "You are " + this.getDescription() + "\r\n" + this.getExitString();
     }
