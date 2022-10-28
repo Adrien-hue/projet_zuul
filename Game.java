@@ -172,6 +172,8 @@ public class Game
                 } else {
                     this.aCurrentRoom.getLongDescription();
                 }
+            } else if(pCommand.getCommandWord().equalsIgnoreCase("eat")){
+                System.out.println("You have eaten now and you are not hungry any more.");
             }
             return false;
         }
