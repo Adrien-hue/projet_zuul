@@ -114,6 +114,10 @@ Dans une boutique de skateboard, Dem Bones doit monter sa nouvelle planche de sk
 
 1. Les sorties d'une pièce (Room), sont relative à la pièce, elle n'ont donc aucun intéret à ne pas être dans la classe Room.
 
+#### Exercice 7.8
+
+4. La procédure setExits est devenue inutile car elle n'est pas assez généraliste et limite les évolutions que l'on peut apporté au projet. Elle a été remplacer par setExit.
+
 ### III. Mode d'emploi (si nécessaire, instructions d'installation ou pour démarrer le jeu)
 
 ### IV. Déclaration obligatoire anti-plagiat (*)

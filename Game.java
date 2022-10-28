@@ -35,20 +35,39 @@ public class Game
         Room vRayonChaussure = new Room("dans le rayon des chaussures.");
         Room vRayonSac = new Room("dans le rayon des sacs.");
 
-        // Init exists for each rooms : North, South, East, West
-        vComptoir.setExits(null, vCaisse, null, vRayonPlanche);
-        vCaisse.setExits(vComptoir, null, vRayonCruiser, null);
-        vMiroir.setExits(null, vRayonHoodie, vEscalierRdC, vRayonChaussure);
-        vEscalierRdC.setExits(null, vRayonRoue, null, vMiroir);
+        // Init exists for each rooms
+        vComptoir.setExit("south", vCaisse);
+        vComptoir.setExit("west", vRayonPlanche);
+        
+        vCaisse.setExit("north", vComptoir);
+        vCaisse.setExit("east", vRayonCruiser);
+        
+        vMiroir.setExit("south", vRayonHoodie);
+        vMiroir.setExit("east", vEscalierRdC);
+        vMiroir.setExit("west", vRayonChaussure);
+        
+        vEscalierRdC.setExit("south", vRayonRoue);
+        vEscalierRdC.setExit("west", vMiroir);
+        
+        vRayonPlanche.setExit("east", vComptoir);
+        
+        vRayonRoulement.setExit("north", vRayonRoue);
+        vRayonRoulement.setExit("west", vRayonCruiser);
+        
+        vRayonRoue.setExit("north", vEscalierRdC);
+        vRayonRoue.setExit("south", vRayonRoulement);
 
-        vRayonPlanche.setExits(null, null, vComptoir, null);
-        vRayonRoulement.setExits(vRayonRoue, null, null, vRayonCruiser);
-        vRayonRoue.setExits(vEscalierRdC, vRayonRoulement, null, null);
-
-        vRayonCruiser.setExits(vRayonHoodie, null, vRayonRoulement, vCaisse);
-        vRayonHoodie.setExits(vMiroir, vRayonCruiser, null, null);
-        vRayonChaussure.setExits(null, null, vMiroir, vRayonSac);
-        vRayonSac.setExits(null, null, vRayonChaussure, null);
+        vRayonCruiser.setExit("north", vRayonHoodie);
+        vRayonCruiser.setExit("east", vRayonRoulement);
+        vRayonCruiser.setExit("west", vCaisse);
+        
+        vRayonHoodie.setExit("north", vMiroir);
+        vRayonHoodie.setExit("south", vRayonCruiser);
+        
+        vRayonChaussure.setExit("east", vMiroir);
+        vRayonChaussure.setExit("west", vRayonSac);
+        
+        vRayonSac.setExit("east", vRayonChaussure);
         
         // Init starting room
         this.aCurrentRoom = vRayonCruiser;

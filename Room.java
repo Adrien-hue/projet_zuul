@@ -1,3 +1,4 @@
+import java.util.HashMap;
  
 /**
  * Classe Room - un lieu du jeu d'aventure Zuul.
@@ -7,14 +8,12 @@
 public class Room
 {
     private String aDescription;
-    private Room aNorthExit = null;
-    private Room aSouthExit = null;
-    private Room aEastExit = null;
-    private Room aWestExit = null;
+    private HashMap<String, Room> aExits;
     
     public Room(final String pDescription)
     {
         this.aDescription = pDescription;
+        this.aExits = new HashMap<String, Room>();
     } // Room
     
     /**
@@ -34,31 +33,13 @@ public class Room
      * @return The room in specified direction
      */
     public Room getExit(final String pDirection){
-        if(pDirection.equals("north")){
-            return aNorthExit;
-        }
-        
-        if(pDirection.equals("south")){
-            return aSouthExit;
-        }
-        
-        if(pDirection.equals("east")){
-            return aEastExit;
-        }
-        
-        if(pDirection.equals("west")){
-            return aWestExit;
-        }
-        
-        else{
-            return null;
-        }
+        return this.aExits.get(pDirection);
     }
     
     /**
      * Return available exits
      * 
-     * @return String with available exit
+     * @return String with available exits
      */
     public String getExitString(){
         String vString = "You are " + this.getDescription() + "\r\n";
@@ -85,18 +66,12 @@ public class Room
     }
     
     /**
-     * Init exits
+     * Define the exit pRoom in the specified direction pDirection
      * 
-     * @param Room pNorthExit
-     * @param Room pSouthExit
-     * @param Room pEastExit
-     * @param Room pWestExit
+     * @param String Direction
+     * @param String Room
      */
-    public void setExits(final Room pNorthExit, final Room pSouthExit, final Room pEastExit, final Room pWestExit)
-    {
-        this.aNorthExit = pNorthExit;
-        this.aSouthExit = pSouthExit;
-        this.aEastExit = pEastExit;
-        this.aWestExit = pWestExit;
-    } // setExists
+    public void setExit(final String pDirection, final Room pRoom){
+        this.aExits.put(pDirection, pRoom);
+    }
 } // Room
