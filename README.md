@@ -108,7 +108,11 @@ Dans une boutique de skateboard, Dem Bones doit monter sa nouvelle planche de sk
 
 #### Exercice 7.6
 
-1. 
+1. Quoi qu'il arrive une valeur sera affecté à chaque attribut, donc que la valeur soit null en paramètre ou null par défaut, cela ne change pas grand chose.
+
+#### Exercice 7.7
+
+1. Les sorties d'une pièce (Room), sont relative à la pièce, elle n'ont donc aucun intéret à ne pas être dans la classe Room.
 
 ### III. Mode d'emploi (si nécessaire, instructions d'installation ou pour démarrer le jeu)
 

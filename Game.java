@@ -105,25 +105,7 @@ public class Game
     } // printHelp
     
     private void printLocationInfo(){
-        String vString = "You are " + this.aCurrentRoom.getDescription() + "\r\n";
-        
-        // Display available exits
-        vString += "Exits : ";
-        if(this.aCurrentRoom.getExit("north") != null){
-            vString += "North ";
-        } 
-        
-        if(this.aCurrentRoom.getExit("south") != null){
-            vString += "South ";
-        }
-        
-        if(this.aCurrentRoom.getExit("east") != null){
-            vString += "East ";
-        }
-        
-        if(this.aCurrentRoom.getExit("west") != null){
-            vString  += "West ";
-        }
+        String vString = this.aCurrentRoom.getExitString();
         
         System.out.println(vString);
     }

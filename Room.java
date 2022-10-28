@@ -56,6 +56,35 @@ public class Room
     }
     
     /**
+     * Return available exits
+     * 
+     * @return String with available exit
+     */
+    public String getExitString(){
+        String vString = "You are " + this.getDescription() + "\r\n";
+        
+        // Display available exits
+        vString += "Exits : ";
+        if(this.getExit("north") != null){
+            vString += "North ";
+        } 
+        
+        if(this.getExit("south") != null){
+            vString += "South ";
+        }
+        
+        if(this.getExit("east") != null){
+            vString += "East ";
+        }
+        
+        if(this.getExit("west") != null){
+            vString  += "West ";
+        }
+        
+        return vString;
+    }
+    
+    /**
      * Init exits
      * 
      * @param Room pNorthExit
