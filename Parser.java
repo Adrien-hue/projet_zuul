@@ -32,6 +32,13 @@ public class Parser
         this.aReader        = new Scanner( System.in );
         // System.in designe le clavier, comme System.out designe l'ecran
     } // Parser()
+    
+    /**
+     * Print the list of valid command words
+     */
+    public void showCommands(){
+        this.aValidCommands.showAll();
+    }
 
     /**
      * @return The next command from the user.

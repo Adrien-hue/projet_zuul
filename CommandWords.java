@@ -13,20 +13,26 @@
 public class CommandWords
 {
     // a constant array that will hold all valid command words
-    private final String[] aValidCommands;
+    private static final String aValidCommands[] = {
+        "go",
+        "help",
+        "quit",
+        "look",
+        "eat"
+    };
 
     /**
-     * Constructor - initialise the command words.
+     * Print all valid commands
      */
-    public CommandWords()
-    {
-        this.aValidCommands = new String[5];
-        this.aValidCommands[0] = "go";
-        this.aValidCommands[1] = "help";
-        this.aValidCommands[2] = "quit";
-        this.aValidCommands[3] = "look";
-        this.aValidCommands[4] = "eat";
-    } // CommandWords()
+    public void showAll(){
+        String vString = "";
+        
+        for(String vCommand : CommandWords.aValidCommands){
+            vString += " " + vCommand;
+        }
+        
+        System.out.println(vString);
+    }
 
     /**
      * Check whether a given String is a valid command word. 

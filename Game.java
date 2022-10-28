@@ -127,9 +127,9 @@ public class Game
      */
     private void printHelp()
     {
-        String vHelp = "You are lost. You are alone.\r\nYou wander around at the university.\r\n\r\nYour command words are:\r\n\tgo quit help";
-        
+        String vHelp = "You are lost. You are alone.\r\nYou wander around at the university.\r\n\r\nYour command words are:\r\n\t";
         System.out.println(vHelp);
+        this.aParser.showCommands();
     } // printHelp
     
     /**
