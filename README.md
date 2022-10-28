@@ -106,6 +106,10 @@ Dans une boutique de skateboard, Dem Bones doit monter sa nouvelle planche de sk
 4. Nous avons apporter cette modification afin d'optimiser le code et de ne pas le répéter. 
     De plus, si nous devons effectué un changement dans l'affichage des information de la pièce (Room) courante, en changeant cette fonction seulement, la modification sera répercuté à tous les endroits nécessaires.
 
+#### Exercice 7.6
+
+1. 
+
 ### III. Mode d'emploi (si nécessaire, instructions d'installation ou pour démarrer le jeu)
 
 ### IV. Déclaration obligatoire anti-plagiat (*)

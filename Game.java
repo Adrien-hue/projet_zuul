@@ -69,17 +69,7 @@ public class Game
         }
         
         // Navigate in specified direction
-        if(vDirection.equalsIgnoreCase("north")){
-            vNextRoom = this.aCurrentRoom.aNorthExit;
-        } else if(vDirection.equalsIgnoreCase("south")){
-            vNextRoom = this.aCurrentRoom.aSouthExit;
-        } else if(vDirection.equalsIgnoreCase("east")){
-            vNextRoom = this.aCurrentRoom.aEastExit;
-        } else if(vDirection.equalsIgnoreCase("west")){
-            vNextRoom = this.aCurrentRoom.aWestExit;
-        } else {
-            System.err.println("Unknown direction !");
-        }
+        vNextRoom = this.aCurrentRoom.getExit(vDirection.toLowerCase());
         
         // Check if room exists in specified direction
         if(vNextRoom == null){
@@ -119,19 +109,19 @@ public class Game
         
         // Display available exits
         vString += "Exits : ";
-        if(this.aCurrentRoom.aNorthExit != null){
+        if(this.aCurrentRoom.getExit("north") != null){
             vString += "North ";
         } 
         
-        if(this.aCurrentRoom.aSouthExit != null){
+        if(this.aCurrentRoom.getExit("south") != null){
             vString += "South ";
         }
         
-        if(this.aCurrentRoom.aEastExit != null){
+        if(this.aCurrentRoom.getExit("east") != null){
             vString += "East ";
         }
         
-        if(this.aCurrentRoom.aWestExit != null){
+        if(this.aCurrentRoom.getExit("west") != null){
             vString  += "West ";
         }
         

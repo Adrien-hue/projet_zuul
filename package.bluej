@@ -1,4 +1,13 @@
 #BlueJ package file
+dependency1.from=Game
+dependency1.to=Room
+dependency1.type=UsesDependency
+dependency2.from=Game
+dependency2.to=Parser
+dependency2.type=UsesDependency
+dependency3.from=Game
+dependency3.to=Command
+dependency3.type=UsesDependency
 editor.fx.0.height=739
 editor.fx.0.width=816
 editor.fx.0.x=552
@@ -13,7 +22,7 @@ package.editor.x=0
 package.editor.y=0
 package.frame.height=1056
 package.frame.width=1936
-package.numDependencies=0
+package.numDependencies=3
 package.numTargets=6
 package.showExtends=true
 package.showUses=true

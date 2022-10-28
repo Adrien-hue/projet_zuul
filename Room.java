@@ -7,10 +7,10 @@
 public class Room
 {
     private String aDescription;
-    public Room aNorthExit = null;
-    public Room aSouthExit = null;
-    public Room aEastExit = null;
-    public Room aWestExit = null;
+    private Room aNorthExit = null;
+    private Room aSouthExit = null;
+    private Room aEastExit = null;
+    private Room aWestExit = null;
     
     public Room(final String pDescription)
     {
@@ -26,6 +26,34 @@ public class Room
     {
         return this.aDescription;   
     } // getDescription
+    
+    /**
+     * Return the room in the specified direction pDirection
+     * 
+     * @param String Direction wanted
+     * @return The room in specified direction
+     */
+    public Room getExit(final String pDirection){
+        if(pDirection.equals("north")){
+            return aNorthExit;
+        }
+        
+        if(pDirection.equals("south")){
+            return aSouthExit;
+        }
+        
+        if(pDirection.equals("east")){
+            return aEastExit;
+        }
+        
+        if(pDirection.equals("west")){
+            return aWestExit;
+        }
+        
+        else{
+            return null;
+        }
+    }
     
     /**
      * Init exits
