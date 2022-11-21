@@ -37,7 +37,7 @@ public class Parser
      * Print the list of valid command words
      */
     public void showCommands(){
-        this.aValidCommands.showAll();
+        System.out.println(this.aValidCommands.getCommandList());
     }
 
     /**

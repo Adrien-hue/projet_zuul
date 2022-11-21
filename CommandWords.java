@@ -24,14 +24,14 @@ public class CommandWords
     /**
      * Print all valid commands
      */
-    public void showAll(){
+    public String getCommandList(){
         String vString = "";
         
         for(String vCommand : CommandWords.aValidCommands){
             vString += " " + vCommand;
         }
         
-        System.out.println(vString);
+        return vString;
     }
 
     /**
