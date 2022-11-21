@@ -10,16 +10,18 @@ public class Room
 {
     private String aDescription;
     private HashMap<String, Room> aExits;
+    private String aImageName;
     
     /**
      * Create new Room instance with description and no exit
      * 
      * @param String Description
      */
-    public Room(final String pDescription)
+    public Room(final String pDescription, final String pImage)
     {
         this.aDescription = pDescription;
         this.aExits = new HashMap<String, Room>();
+        this.aImageName = pImage;
     } // Room
     
     /**
@@ -66,6 +68,14 @@ public class Room
         }
         
         return vExitString.toString();
+    }
+    
+    /**
+     * Return a string describing the room's image name
+     */
+    public String getImageName()
+    {
+        return this.aImageName;
     }
     
     /**
