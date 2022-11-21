@@ -82,7 +82,7 @@ public class UserInterface implements ActionListener
      */
     private void createGUI()
     {
-        this.aMyFrame = new JFrame( "Zork" ); // change the title
+        this.aMyFrame = new JFrame( "Dem Bones SB" ); // change the title
         this.aEntryField = new JTextField( 34 );
 
         this.aLog = new JTextArea();
@@ -90,6 +90,8 @@ public class UserInterface implements ActionListener
         JScrollPane vListScroller = new JScrollPane( this.aLog );
         vListScroller.setPreferredSize( new Dimension(200, 200) );
         vListScroller.setMinimumSize( new Dimension(100,100) );
+        
+        JButton vBtnHelp = new JButton("Help !");
 
         JPanel vPanel = new JPanel();
         this.aImage = new JLabel();
@@ -98,11 +100,17 @@ public class UserInterface implements ActionListener
         vPanel.add( this.aImage, BorderLayout.NORTH );
         vPanel.add( vListScroller, BorderLayout.CENTER );
         vPanel.add( this.aEntryField, BorderLayout.SOUTH );
+        vPanel.add( vBtnHelp, BorderLayout.EAST );
 
         this.aMyFrame.getContentPane().add( vPanel, BorderLayout.CENTER );
 
         // add some event listeners to some components
         this.aEntryField.addActionListener( this );
+        vBtnHelp.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+                aEngine.interpretCommand("help");
+            }  
+        });  
 
         // to end program when window is closed
         this.aMyFrame.addWindowListener( new WindowAdapter() {
