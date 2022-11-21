@@ -57,15 +57,15 @@ public class Room
      * @return String with available exits
      */
     public String getExitString(){
-        String vString = "Exits :";
+        StringBuilder vExitString = new StringBuilder("Exits :");
         
         Set<String> vKeys = this.aExits.keySet();
         
         for(String direction : vKeys){
-            vString += " " + direction;
+            vExitString.append(" " + direction);
         }
         
-        return vString;
+        return vExitString.toString();
     }
     
     /**

@@ -1,6 +1,4 @@
- 
-
-/**
+ /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.
  * 
@@ -25,13 +23,13 @@ public class CommandWords
      * Print all valid commands
      */
     public String getCommandList(){
-        String vString = "";
+        StringBuilder vCommandList = new StringBuilder();
         
         for(String vCommand : CommandWords.aValidCommands){
-            vString += " " + vCommand;
+            vCommandList.append(" " + vCommand);
         }
         
-        return vString;
+        return vCommandList.toString();
     }
 
     /**
