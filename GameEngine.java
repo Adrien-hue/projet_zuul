@@ -91,14 +91,16 @@ public class GameEngine
         vRayonSac.setExit("east", vRayonChaussure);
         
         // Init Items positions
-        Item vItemPlanche = new Item("Planche - Plan B", "Planche de skateboard, taille 8.25", 1.2, 65);
-        vRayonPlanche.setItem(vItemPlanche);
+        Item vItemPlanche_PlanB = new Item("Planche - Plan B", "Planche de skateboard, taille 8.25", 1.2, 65);
+        Item vItemPlanche_Girl = new Item("Planche - Girl", "Planche de skateboard, taille 8.25", 1.2, 55);
+        vRayonPlanche.addItem(vItemPlanche_PlanB);
+        vRayonPlanche.addItem(vItemPlanche_Girl);
         
         Item vItemRoulement = new Item("Roulement classique", "Roulement en acier ABEC5", 0.1, 20);
-        vRayonRoulement.setItem(vItemRoulement);
+        vRayonRoulement.addItem(vItemRoulement);
         
         Item vItemRoue = new Item("Roues classiques", "Roues SpitFire", 0.3, 35);
-        vRayonRoue.setItem(vItemRoue);
+        vRayonRoue.addItem(vItemRoue);
         
         // Init starting room
         this.aCurrentRoom = vRayonCruiser;
@@ -202,9 +204,9 @@ public class GameEngine
             else
                 this.endGame();
         } else if ( vCommandWord.equals( "look" ) ) {
-            Item vRoomItem = this.aCurrentRoom.getItem();
+            Item vRoomItem = this.aCurrentRoom.getItem(vCommand.getSecondWord());
             
-            if(vCommand.hasSecondWord() && vCommand.getSecondWord().equals(vRoomItem.getNom())){
+            if(vCommand.hasSecondWord()){
                 this.aGui.println( vRoomItem.getLongDescription() );
             }
         }

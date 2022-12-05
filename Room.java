@@ -11,7 +11,7 @@ public class Room
     private String aDescription;
     private HashMap<String, Room> aExits;
     private String aImageName;
-    private Item aItem;
+    private HashMap<String, Item> aItems;
     
     /**
      * Create new Room instance with description and no exit
@@ -23,6 +23,7 @@ public class Room
         this.aDescription = pDescription;
         this.aExits = new HashMap<String, Room>();
         this.aImageName = pImage;
+        this.aItems = new HashMap<String, Item>();
     } // Room
     
     /**
@@ -45,7 +46,7 @@ public class Room
         
         vLongDescription.append("You are " + this.getDescription());
         vLongDescription.append("\r\n" + this.getExitString());
-        if(this.getItem() != null){
+        if(this.aItems.size() > 0){
             vLongDescription.append("\r\n" + this.getItemString());
         }
         
@@ -67,8 +68,8 @@ public class Room
      * 
      * @return The item in the current room
      */
-    public Item getItem(){
-        return this.aItem;
+    public Item getItem(final String pItemName){
+        return this.aItems.get(pItemName);
     }
     
     /**
@@ -94,11 +95,15 @@ public class Room
      * @return String with item in the current room
      */
     public String getItemString(){
-        StringBuilder vExitString = new StringBuilder("Items :");
+        StringBuilder vItemString = new StringBuilder("Items :");
         
-        vExitString.append(" " + this.aItem.getNom());
+        Set<String> vKeys = this.aItems.keySet();
         
-        return vExitString.toString();
+        for(String item : vKeys){
+            vItemString.append(" " + item);;
+        }
+        
+        return vItemString.toString();
     }
     
     /**
@@ -124,7 +129,7 @@ public class Room
      * 
      * @params Item item to set
      */
-    public void setItem(final Item pItem){
-        this.aItem = pItem;
+    public void addItem(final Item pItem){
+        this.aItems.put(pItem.getNom(), pItem);
     }
 } // Room
