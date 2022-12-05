@@ -18,6 +18,15 @@ public class Item
         this.aPoid = pPoid;
         this.aPrix = pPrix;
     }
+    
+    /**
+     * Return full description about current item
+     * 
+     * @return Full description
+     */
+    public String getLongDescription(){
+        return this.getNom() + " : \n\tDescription : " + this.getDescription() + " : \n\tPoids : " + this.getPoid() + " : \n\tPrix : " + this.getPrix();
+    }
 
     /**
      * Set current item name
@@ -33,7 +42,7 @@ public class Item
      * 
      * @params String item description
      */
-    public void getDescription(final String pDescription){
+    public void setDescription(final String pDescription){
         this.aDescription = pDescription;
     }
     
