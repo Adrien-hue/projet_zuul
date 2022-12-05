@@ -201,6 +201,12 @@ public class GameEngine
                 this.aGui.println( "Quit what?" );
             else
                 this.endGame();
+        } else if ( vCommandWord.equals( "look" ) ) {
+            Item vRoomItem = this.aCurrentRoom.getItem();
+            
+            if(vCommand.hasSecondWord() && vCommand.getSecondWord().equals(vRoomItem.getNom())){
+                this.aGui.println( vRoomItem.getLongDescription() );
+            }
         }
     }
 }
