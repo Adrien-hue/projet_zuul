@@ -32,21 +32,21 @@ public class GameEngine
     private void createRooms()
     {
         // Declare all the rooms
-        Room vComptoir = new Room("au comptoir de le boutique.", "");
+        Room vComptoir = new Room("au comptoir de le boutique.", "images/room_comptoir.jpg");
         Room vCaisse = new Room("à la caisse de la boutique.", "");
         Room vMiroir = new Room("face au miroir.", "");
         Room vEscalierRdC = new Room("dans les escaliers au rez-de-chaussé.", "");
         Room vEscalierSousSol = new Room("dans les escaliers au sous sol.", "");
         Room vEscalierEtage = new Room("dans les escaliers à l'étage.", "");
         
-        Room vRayonPlanche = new Room("dans le rayon des plateaux de skateboard.", "");
-        Room vRayonRoulement = new Room("dans le rayon des roulements.", "");
-        Room vRayonRoue = new Room("dans le rayon des roues.", "");
+        Room vRayonPlanche = new Room("dans le rayon des plateaux de skateboard.", "images/room_planches.jpg");
+        Room vRayonRoulement = new Room("dans le rayon des roulements.", "images/room_roulements.jpg");
+        Room vRayonRoue = new Room("dans le rayon des roues.", "images/room_roues.jpg");
         
-        Room vRayonCruiser = new Room("dans le rayon des cruisers.", "");
-        Room vRayonHoodie = new Room("dans le rayon des hoodies.", "");
-        Room vRayonChaussure = new Room("dans le rayon des chaussures.", "");
-        Room vRayonSac = new Room("dans le rayon des sacs.", "");
+        Room vRayonCruiser = new Room("dans le rayon des cruisers.", "images/room_cruiser.jpg");
+        Room vRayonHoodie = new Room("dans le rayon des hoodies.", "images/room_hoodies.jpg");
+        Room vRayonChaussure = new Room("dans le rayon des chaussures.", "images/room_chaussures.jpg");
+        Room vRayonSac = new Room("dans le rayon des sacs.", "images/room_sacs.jpg");
         
         Room vMiniRampe = new Room("dans la mini-rampe.", "");
         Room vPartieStreet = new Room("dans la partie street.", "");
