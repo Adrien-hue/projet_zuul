@@ -11,6 +11,7 @@ public class Room
     private String aDescription;
     private HashMap<String, Room> aExits;
     private String aImageName;
+    private Item aItem;
     
     /**
      * Create new Room instance with description and no exit
@@ -40,7 +41,15 @@ public class Room
      * @return Room description and availables exits
      */
     public String getLongDescription(){
-        return "You are " + this.getDescription() + "\r\n" + this.getExitString();
+        StringBuilder vLongDescription = new StringBuilder("");
+        
+        vLongDescription.append("You are " + this.getDescription());
+        vLongDescription.append("\r\n" + this.getExitString());
+        if(this.getItem() != null){
+            vLongDescription.append("\r\n" + this.getItemString());
+        }
+        
+        return vLongDescription.toString();
     }
     
     /**
@@ -51,6 +60,15 @@ public class Room
      */
     public Room getExit(final String pDirection){
         return this.aExits.get(pDirection);
+    }
+    
+    /**
+     * Return the item in the current room
+     * 
+     * @return The item in the current room
+     */
+    public Item getItem(){
+        return this.aItem;
     }
     
     /**
@@ -71,6 +89,19 @@ public class Room
     }
     
     /**
+     * Return item in the current room
+     * 
+     * @return String with item in the current room
+     */
+    public String getItemString(){
+        StringBuilder vExitString = new StringBuilder("Items :");
+        
+        vExitString.append(" " + this.aItem.getNom());
+        
+        return vExitString.toString();
+    }
+    
+    /**
      * Return a string describing the room's image name
      */
     public String getImageName()
@@ -86,5 +117,14 @@ public class Room
      */
     public void setExit(final String pDirection, final Room pRoom){
         this.aExits.put(pDirection, pRoom);
+    }
+    
+    /**
+     * Set the room's item
+     * 
+     * @params Item item to set
+     */
+    public void setItem(final Item pItem){
+        this.aItem = pItem;
     }
 } // Room

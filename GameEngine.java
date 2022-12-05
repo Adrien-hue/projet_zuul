@@ -90,6 +90,16 @@ public class GameEngine
         
         vRayonSac.setExit("east", vRayonChaussure);
         
+        // Init Items positions
+        Item vItemPlanche = new Item("Planche - Plan B", "Planche de skateboard, taille 8.25", 1.2, 65);
+        vRayonPlanche.setItem(vItemPlanche);
+        
+        Item vItemRoulement = new Item("Roulement classique", "Roulement en acier ABEC5", 0.1, 20);
+        vRayonRoulement.setItem(vItemRoulement);
+        
+        Item vItemRoue = new Item("Roues classiques", "Roues SpitFire", 0.3, 35);
+        vRayonRoue.setItem(vItemRoue);
+        
         // Init starting room
         this.aCurrentRoom = vRayonCruiser;
     } // createRooms
