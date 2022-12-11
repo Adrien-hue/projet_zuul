@@ -16,7 +16,8 @@ public class CommandWords
         "help",
         "quit",
         "look",
-        "eat"
+        "eat",
+        "back"
     };
 
     /**

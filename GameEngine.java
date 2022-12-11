@@ -1,3 +1,4 @@
+import java.util.Stack;
 
 /**
  * Décrivez votre classe GameEngine ici.
@@ -9,6 +10,7 @@ public class GameEngine
 {
     private Parser        aParser;
     private Room          aCurrentRoom;
+    private Stack<String> aDirectionHistory;
     private UserInterface aGui;
     
     /**
@@ -17,6 +19,7 @@ public class GameEngine
     public GameEngine()
     {
         this.aParser = new Parser();
+        this.aDirectionHistory = new Stack<String>();
         this.createRooms();
     }
 
@@ -154,7 +157,7 @@ public class GameEngine
      * 
      * @param Command Command to navigate
      */
-    private void goRoom(final Command pCommand)
+    private void goRoom(final Command pCommand, final boolean pToSave)
     {
         Room vNextRoom = null;
         String vDirection = pCommand.getSecondWord();
@@ -171,12 +174,53 @@ public class GameEngine
         if ( vNextRoom == null )
             this.aGui.println( "There is no door!" );
         else {
+            if(pToSave){
+                //Ajout de la Room à l'historique
+                this.aDirectionHistory.push(vDirection);
+            }
+            
             this.aCurrentRoom = vNextRoom;
             this.aGui.println( this.aCurrentRoom.getLongDescription() );
             if ( this.aCurrentRoom.getImageName() != null )
                 this.aGui.showImage( this.aCurrentRoom.getImageName() );
         }
     } // goRoom
+    
+    /**
+     * Return the opposite direction of the given direction
+     * 
+     * @params String direction
+     * @return Opposite direction
+     */
+    private String getOppositeDirection(final String vDirection){
+        String vOppositeDirection;
+        
+        switch(vDirection){
+            case "north":
+                vOppositeDirection = "south";
+                break;
+            case "east":
+                vOppositeDirection = "west";
+                break;
+            case "south":
+                vOppositeDirection = "north";
+                break;
+            case "west":
+                vOppositeDirection = "east";
+                break;
+            case "up":
+                vOppositeDirection = "down";
+                break;
+            case "down":
+                vOppositeDirection = "up";
+                break;
+            default :
+                vOppositeDirection = "";
+                break;
+        }
+        
+        return vOppositeDirection;
+    }
     
     /**
      * Given a command, process (that is: execute) the command.
@@ -197,8 +241,25 @@ public class GameEngine
         if ( vCommandWord.equals( "help" ) )
             this.printHelp();
         else if ( vCommandWord.equals( "go" ) )
-            this.goRoom( vCommand );
-        else if ( vCommandWord.equals( "quit" ) ) {
+            this.goRoom( vCommand, true );
+        else if ( vCommandWord.equals( "back" ) ){
+            Command vGoOpposite = null;
+            
+            if(!this.aDirectionHistory.empty()){
+                String vPreviousDirection = this.aDirectionHistory.peek();
+            
+                String vOppositeDirection = this.getOppositeDirection(vPreviousDirection);
+            
+                vGoOpposite = new Command("go", vOppositeDirection);
+                
+                this.goRoom( vGoOpposite, false );
+                
+                this.aDirectionHistory.pop();
+            } else {
+                this.aGui.println( "Vous n'avez pas encore bouger." );
+            }
+            
+        } else if ( vCommandWord.equals( "quit" ) ) {
             if ( vCommand.hasSecondWord() )
                 this.aGui.println( "Quit what?" );
             else
