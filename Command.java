@@ -5,14 +5,21 @@
  */
 public class Command
 {
+    /**
+     * Un String à portée privée
+     */
     private String aCommandWord;
+    
+    /**
+     * Un String à portée privée
+     */
     private String aSecondWord;
     
     /**
      * Create new Command instance
      * 
-     * @param String Principal word
-     * @param String Second word
+     * @param pCommandWord Principal word
+     * @param pSecondWord Second word
      */
     public Command(final String pCommandWord, final String pSecondWord)
     {
@@ -22,6 +29,8 @@ public class Command
     
     /**
      * Return aCommandWord
+     * 
+     * @return Command word
      */
     public String getCommandWord()
     {
@@ -30,6 +39,8 @@ public class Command
     
     /**
      * Return aSecondWord
+     * 
+     * @return Second word
      */
     public String getSecondWord()
     {
@@ -38,6 +49,8 @@ public class Command
     
     /**
      * Check if command has second word
+     * 
+     * @return true if there is a second word, else false
      */
     public boolean hasSecondWord()
     {
@@ -46,6 +59,8 @@ public class Command
     
     /**
      * Check if command word is known
+     * 
+     * @return true if the command is unkown, else false
      */
     public boolean isUnknown()
     {

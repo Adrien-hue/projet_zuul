@@ -1,6 +1,6 @@
 import java.util.StringTokenizer;
 
-/*
+/**
  * This class is part of "World of Zuul". "World of Zuul" is a simple, 
  * text based adventure game.
  *
@@ -19,7 +19,9 @@ import java.util.StringTokenizer;
 
 public class Parser 
 {
-
+    /**
+     * Une ligne de commande à portée privée
+     */
     private CommandWords aCommandWords;  // holds all valid command words
 
     /**
@@ -33,6 +35,9 @@ public class Parser
     /**
      * Get a new command from the user. The command is read by
      * parsing the 'inputLine'.
+     * 
+     * @param pInputLine Input line
+     * @return Command from the input
      */
     public Command getCommand( final String pInputLine ) 
     {
@@ -64,6 +69,8 @@ public class Parser
 
     /**
      * Returns a String with valid command words.
+     * 
+     * @return String with available commands
      */
     public String getCommandString() // was showCommands()
     {

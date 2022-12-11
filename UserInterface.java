@@ -13,10 +13,29 @@ import java.awt.image.*;
  */
 public class UserInterface implements ActionListener
 {
+    /**
+     * Un moteur de jeu à portée privée
+     */
     private GameEngine aEngine;
+    
+    /**
+     * Une JFrame à portée privée
+     */
     private JFrame     aMyFrame;
+    
+    /**
+     * Un JTextField à portée privée
+     */
     private JTextField aEntryField;
+    
+    /**
+     * Une JTextArea à portée privée
+     */
     private JTextArea  aLog;
+    
+    /**
+     * Un JLabel à portée privée
+     */
     private JLabel     aImage;
 
     /**
@@ -24,7 +43,7 @@ public class UserInterface implements ActionListener
      * (an object processing and executing the game commands) is
      * needed.
      * 
-     * @param gameEngine  The GameEngine object implementing the game logic.
+     * @param pGameEngine  The GameEngine object implementing the game logic.
      */
     public UserInterface( final GameEngine pGameEngine )
     {
@@ -34,6 +53,8 @@ public class UserInterface implements ActionListener
 
     /**
      * Print out some text into the text area.
+     * 
+     * @param pText Text
      */
     public void print( final String pText )
     {
@@ -43,6 +64,8 @@ public class UserInterface implements ActionListener
 
     /**
      * Print out some text into the text area, followed by a line break.
+     * 
+     * @param pText Text
      */
     public void println( final String pText )
     {
@@ -51,6 +74,8 @@ public class UserInterface implements ActionListener
 
     /**
      * Show an image file in the interface.
+     * 
+     * @param pImageName Image path
      */
     public void showImage( final String pImageName )
     {
@@ -67,6 +92,8 @@ public class UserInterface implements ActionListener
 
     /**
      * Enable or disable input in the input field.
+     * 
+     * @param pOnOff enable or disable
      */
     public void enable( final boolean pOnOff )
     {
@@ -124,6 +151,8 @@ public class UserInterface implements ActionListener
 
     /**
      * Actionlistener interface for entry textfield.
+     * 
+     * @param pE ActionEvent
      */
     public void actionPerformed( final ActionEvent pE ) 
     {

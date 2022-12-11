@@ -8,9 +8,24 @@ import java.util.Stack;
  */
 public class GameEngine
 {
+    /**
+     * Un parser à portée privée
+     */
     private Parser        aParser;
+    
+    /**
+     * Une room à portée privée
+     */
     private Room          aCurrentRoom;
+    
+    /**
+     * Une pile de direction à portée privée
+     */
     private Stack<String> aDirectionHistory;
+    
+    /**
+     * Une interface utilisateur à portée privée
+     */
     private UserInterface aGui;
     
     /**
@@ -23,6 +38,11 @@ public class GameEngine
         this.createRooms();
     }
 
+    /**
+     * Set up grahic user interface
+     * 
+     * @param pUserInterface User interface
+     */
     public void setGUI( final UserInterface pUserInterface )
     {
         this.aGui = pUserInterface;
@@ -146,6 +166,10 @@ public class GameEngine
         this.aGui.println( "Your command words are: " + this.aParser.getCommandString() );
     } // printHelp
     
+    
+    /**
+     * End the game
+     */
     private void endGame()
     {
         this.aGui.println( "Thank you for playing.  Good bye." );
@@ -155,7 +179,8 @@ public class GameEngine
     /**
      * Navigate into a room
      * 
-     * @param Command Command to navigate
+     * @param pCommand Command to navigate
+     * @param pToSave Save or not the navigation
      */
     private void goRoom(final Command pCommand, final boolean pToSave)
     {
@@ -189,7 +214,7 @@ public class GameEngine
     /**
      * Return the opposite direction of the given direction
      * 
-     * @params String direction
+     * @param vDirection direction
      * @return Opposite direction
      */
     private String getOppositeDirection(final String vDirection){
@@ -226,6 +251,8 @@ public class GameEngine
      * Given a command, process (that is: execute) the command.
      * If this command ends the game, true is returned, otherwise false is
      * returned.
+     * 
+     * @param pCommandLine Command to interpret
      */
     public void interpretCommand( final String pCommandLine ) 
     {

@@ -8,15 +8,31 @@ import java.util.Set;
  */
 public class Room
 {
+    /**
+     * Un String à portée privée
+     */
     private String aDescription;
+    
+    /**
+     * Un tableau associatif (String -> Room) à portée privée
+     */
     private HashMap<String, Room> aExits;
+    
+    /**
+     * Un String à portée privée
+     */
     private String aImageName;
+    
+    /**
+     * Un tableau associatif (String -> Item) à portée privée
+     */
     private HashMap<String, Item> aItems;
     
     /**
      * Create new Room instance with description and no exit
      * 
-     * @param String Description
+     * @param pDescription Description
+     * @param pImage Image path
      */
     public Room(final String pDescription, final String pImage)
     {
@@ -56,7 +72,7 @@ public class Room
     /**
      * Return the room in the specified direction pDirection
      * 
-     * @param String Direction wanted
+     * @param pDirection Direction wanted
      * @return The room in specified direction
      */
     public Room getExit(final String pDirection){
@@ -66,6 +82,7 @@ public class Room
     /**
      * Return the item in the current room
      * 
+     * @param pItemName Item wanted
      * @return The item in the current room
      */
     public Item getItem(final String pItemName){
@@ -108,6 +125,8 @@ public class Room
     
     /**
      * Return a string describing the room's image name
+     * 
+     * @return Image name
      */
     public String getImageName()
     {
@@ -117,8 +136,8 @@ public class Room
     /**
      * Define the exit pRoom in the specified direction pDirection
      * 
-     * @param String Direction
-     * @param String Room
+     * @param pDirection Direction
+     * @param pRoom Room
      */
     public void setExit(final String pDirection, final Room pRoom){
         this.aExits.put(pDirection, pRoom);
@@ -127,7 +146,7 @@ public class Room
     /**
      * Set the room's item
      * 
-     * @params Item item to set
+     * @param pItem item to set
      */
     public void addItem(final Item pItem){
         this.aItems.put(pItem.getNom(), pItem);

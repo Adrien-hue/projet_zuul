@@ -5,7 +5,14 @@
  */
 public class Game
 {
+    /**
+     * Une interface utilisateur à portée privée
+     */
     private UserInterface aGui;
+    
+    /**
+     * Un moteur de jeu à portée privée
+     */
     private GameEngine aEngine;
 
     /**

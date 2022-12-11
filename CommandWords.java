@@ -10,7 +10,10 @@
  */
 public class CommandWords
 {
-    // a constant array that will hold all valid command words
+    /** 
+     * a constant array that will hold all valid command words
+     * porté privée
+     */
     private static final String aValidCommands[] = {
         "go",
         "help",
@@ -22,6 +25,8 @@ public class CommandWords
 
     /**
      * Print all valid commands
+     * 
+     * @return List of available commands
      */
     public String getCommandList(){
         StringBuilder vCommandList = new StringBuilder();
@@ -35,6 +40,8 @@ public class CommandWords
 
     /**
      * Check whether a given String is a valid command word. 
+     * 
+     * @param pString String to analyze
      * @return true if a given string is a valid command,
      * false if it isn't.
      */

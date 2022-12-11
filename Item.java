@@ -7,11 +7,34 @@
  */
 public class Item
 {
+    /**
+     * Un String à portée privée
+     */
     private String aNom;
+    
+    /**
+     * Un String à portée privée
+     */
     private String aDescription;
+    
+    /**
+     * Un double à portée privée
+     */
     private double aPoid;
+    
+    /**
+     * Un double à portée privée
+     */
     private double aPrix;
 
+    /**
+     * Create new Item instance
+     * 
+     * @param pNom Nom
+     * @param pDescription Description
+     * @param pPoid Poids
+     * @param pPrix Prix
+     */
     public Item(final String pNom, final String pDescription, final double pPoid, final double pPrix){
         this.aNom = pNom;
         this.aDescription = pDescription;
@@ -31,7 +54,7 @@ public class Item
     /**
      * Set current item name
      * 
-     * @params String item name
+     * @param pNom item name
      */
     public void setNom(final String pNom){
         this.aNom = pNom;
@@ -40,7 +63,7 @@ public class Item
     /**
      * Set current item description
      * 
-     * @params String item description
+     * @param pDescription item description
      */
     public void setDescription(final String pDescription){
         this.aDescription = pDescription;
@@ -49,7 +72,7 @@ public class Item
     /**
      * Set current item weight
      * 
-     * @params double item weight
+     * @param pPoid item weight
      */
     public void getPoid(final double pPoid){
         this.aPoid = pPoid;
@@ -58,7 +81,7 @@ public class Item
     /**
      * Set current item price
      * 
-     * @params double item price
+     * @param pPrix item price
      */
     public void getPrix(final double pPrix){
         this.aPrix = pPrix;
