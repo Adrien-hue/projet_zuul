@@ -1,0 +1,18 @@
+go north
+go north
+go north
+go east
+go south
+look Roues_classiques
+go south
+go west
+eat
+back
+back
+back
+back
+back
+back
+back
+help
+quit

@@ -20,7 +20,8 @@ public class CommandWords
         "quit",
         "look",
         "eat",
-        "back"
+        "back",
+        "test"
     };
 
     /**

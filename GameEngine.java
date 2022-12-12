@@ -1,4 +1,8 @@
 import java.util.Stack;
+import java.io.FileReader; 
+import java.io.BufferedReader; 
+import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 /**
  * Décrivez votre classe GameEngine ici.
@@ -114,15 +118,15 @@ public class GameEngine
         vRayonSac.setExit("east", vRayonChaussure);
         
         // Init Items positions
-        Item vItemPlanche_PlanB = new Item("Planche - Plan B", "Planche de skateboard, taille 8.25", 1.2, 65);
-        Item vItemPlanche_Girl = new Item("Planche - Girl", "Planche de skateboard, taille 8.25", 1.2, 55);
+        Item vItemPlanche_PlanB = new Item("Planche-Plan B", "Planche de skateboard, taille 8.25", 1.2, 65);
+        Item vItemPlanche_Girl = new Item("Planche-Girl", "Planche de skateboard, taille 8.25", 1.2, 55);
         vRayonPlanche.addItem(vItemPlanche_PlanB);
         vRayonPlanche.addItem(vItemPlanche_Girl);
         
-        Item vItemRoulement = new Item("Roulement classique", "Roulement en acier ABEC5", 0.1, 20);
+        Item vItemRoulement = new Item("Roulement_classique", "Roulement en acier ABEC5", 0.1, 20);
         vRayonRoulement.addItem(vItemRoulement);
         
-        Item vItemRoue = new Item("Roues classiques", "Roues SpitFire", 0.3, 35);
+        Item vItemRoue = new Item("Roues_classiques", "Roues SpitFire", 0.3, 35);
         vRayonRoue.addItem(vItemRoue);
         
         // Init starting room
@@ -272,20 +276,23 @@ public class GameEngine
         else if ( vCommandWord.equals( "back" ) ){
             Command vGoOpposite = null;
             
-            if(!this.aDirectionHistory.empty()){
-                String vPreviousDirection = this.aDirectionHistory.peek();
-            
-                String vOppositeDirection = this.getOppositeDirection(vPreviousDirection);
-            
-                vGoOpposite = new Command("go", vOppositeDirection);
-                
-                this.goRoom( vGoOpposite, false );
-                
-                this.aDirectionHistory.pop();
+            if ( vCommand.hasSecondWord() ){
+                this.aGui.println( "Back where ?" );
             } else {
-                this.aGui.println( "Vous n'avez pas encore bouger." );
+                if(!this.aDirectionHistory.empty()){
+                    String vPreviousDirection = this.aDirectionHistory.peek();
+                
+                    String vOppositeDirection = this.getOppositeDirection(vPreviousDirection);
+                
+                    vGoOpposite = new Command("go", vOppositeDirection);
+                    
+                    this.goRoom( vGoOpposite, false );
+                    
+                    this.aDirectionHistory.pop();
+                } else {
+                    this.aGui.println( "Vous ne pouvez pas retourner en arrière." );
+                }
             }
-            
         } else if ( vCommandWord.equals( "quit" ) ) {
             if ( vCommand.hasSecondWord() )
                 this.aGui.println( "Quit what?" );
@@ -296,6 +303,30 @@ public class GameEngine
             
             if(vCommand.hasSecondWord()){
                 this.aGui.println( vRoomItem.getLongDescription() );
+            }
+        } else if ( vCommandWord.equals( "test" ) ) {
+            if ( !vCommand.hasSecondWord() )
+                this.aGui.println( "Please input file to test." );
+            else {
+                String vFileName = vCommand.getSecondWord();
+                
+                if(!vFileName.endsWith(".txt")){
+                    vFileName += ".txt";
+                }
+                
+                try{
+                    Scanner vSr = new Scanner(new BufferedReader(new FileReader( vFileName )));
+                    
+                    String vCommandLine = "";
+                    
+                    while ( vSr.hasNextLine() ) {
+                        vCommandLine = vSr.nextLine();
+                        
+                        this.interpretCommand(vCommandLine);
+                    } // while
+                } catch(final FileNotFoundException vFNFE){
+                    System.err.println("File : " + vFileName + " not found.");
+                }
             }
         }
     }
