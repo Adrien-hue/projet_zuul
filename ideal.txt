@@ -1,0 +1,11 @@
+go east
+look Roulement_classique
+go north
+look Roues_classiques
+back
+back
+go west
+go north
+go west
+look Planche-Girl
+quit

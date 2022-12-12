@@ -78,7 +78,7 @@ public class GameEngine
         Room vMiniRampe = new Room("dans la mini-rampe.", "");
         Room vPartieStreet = new Room("dans la partie street.", "");
         
-        Room vReserver = new Room("dans la réserve.", "");
+        Room vReserve = new Room("dans la réserve.", "");
         Room vToilettes= new Room("dans les toilettes.", "");
 
         // Init exists for each rooms
@@ -96,6 +96,22 @@ public class GameEngine
         vEscalierRdC.setExit("west", vMiroir);
         vEscalierRdC.setExit("up", vEscalierEtage);
         vEscalierRdC.setExit("down", vEscalierSousSol);
+        
+        vToilettes.setExit("north", vEscalierEtage);
+        
+        vReserve.setExit("east", vEscalierEtage);
+        
+        vEscalierEtage.setExit("down", vEscalierRdC);
+        vEscalierEtage.setExit("south", vToilettes);
+        vEscalierEtage.setExit("west", vReserve);
+        
+        vPartieStreet.setExit("north", vEscalierSousSol);
+        
+        vMiniRampe.setExit("east", vEscalierSousSol);
+        
+        vEscalierSousSol.setExit("up", vEscalierRdC);
+        vEscalierSousSol.setExit("south", vPartieStreet);
+        vEscalierSousSol.setExit("west", vMiniRampe);
         
         vRayonPlanche.setExit("east", vComptoir);
         
@@ -118,7 +134,7 @@ public class GameEngine
         vRayonSac.setExit("east", vRayonChaussure);
         
         // Init Items positions
-        Item vItemPlanche_PlanB = new Item("Planche-Plan B", "Planche de skateboard, taille 8.25", 1.2, 65);
+        Item vItemPlanche_PlanB = new Item("Planche-Plan_B", "Planche de skateboard, taille 8.25", 1.2, 65);
         Item vItemPlanche_Girl = new Item("Planche-Girl", "Planche de skateboard, taille 8.25", 1.2, 55);
         vRayonPlanche.addItem(vItemPlanche_PlanB);
         vRayonPlanche.addItem(vItemPlanche_Girl);
@@ -328,6 +344,8 @@ public class GameEngine
                     System.err.println("File : " + vFileName + " not found.");
                 }
             }
+        } else if ( vCommandWord.equals( "eat" ) ) {
+            this.aGui.println( "Miam miam." );
         }
     }
 }

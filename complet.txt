@@ -1,0 +1,34 @@
+go west
+go north
+go west
+look Planche-Girl
+look Planche-Plan_B
+back
+back
+back
+go east
+look Roulement_classique
+go north
+look Roues_classiques
+go north
+go west
+go south
+back
+go west
+go west
+back
+back
+back
+go up
+go south
+back
+go west
+back
+go down
+go down
+go south
+back
+go west
+eat
+help
+quit
