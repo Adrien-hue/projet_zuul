@@ -1,3 +1,8 @@
+go
+go bleu
+go plouf
+look
+look rien
 go west
 go north
 go west

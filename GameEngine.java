@@ -18,14 +18,9 @@ public class GameEngine
     private Parser        aParser;
     
     /**
-     * Une room à portée privée
+     * Un player à portée
      */
-    private Room          aCurrentRoom;
-    
-    /**
-     * Une pile de direction à portée privée
-     */
-    private Stack<String> aDirectionHistory;
+    private Player        aPlayer;
     
     /**
      * Une interface utilisateur à portée privée
@@ -38,7 +33,7 @@ public class GameEngine
     public GameEngine()
     {
         this.aParser = new Parser();
-        this.aDirectionHistory = new Stack<String>();
+        this.aPlayer = new Player();
         this.createRooms();
     }
 
@@ -146,17 +141,17 @@ public class GameEngine
         vRayonRoue.addItem(vItemRoue);
         
         // Init starting room
-        this.aCurrentRoom = vRayonCruiser;
+        this.aPlayer.setCurrentRoom(vRayonCruiser);
     } // createRooms
     
     /**
      * Print location informations for the player
      */
     private void printLocationInfo(){
-        this.aGui.println(this.aCurrentRoom.getLongDescription());
+        this.aGui.println(this.aPlayer.getCurrentRoom().getLongDescription());
         
-        if ( this.aCurrentRoom.getImageName() != null ){
-            this.aGui.showImage( this.aCurrentRoom.getImageName() );
+        if ( this.aPlayer.getCurrentRoom().getImageName() != null ){
+            this.aGui.showImage( this.aPlayer.getCurrentRoom().getImageName() );
         }
     }
     
@@ -166,13 +161,13 @@ public class GameEngine
     private void printWelcome()
     {
         this.aGui.print( "\n" );
-        this.aGui.println( "Welcome to the World of Zuul!" );
-        this.aGui.println( "World of Zuul is a new, incredibly boring adventure game." );
-        this.aGui.println( "Type 'help' if you need help." );
+        this.aGui.println( "Bienvenue à SnowBeach!" );
+        this.aGui.println( "C'est une boutique exceptionnel pour le skateboard." );
+        this.aGui.println( "Tapez 'help' si vous avez besoin d'aide." );
         this.aGui.print( "\n" );
-        this.aGui.println( this.aCurrentRoom.getLongDescription() );
-        if ( this.aCurrentRoom.getImageName() != null ){
-            this.aGui.showImage( this.aCurrentRoom.getImageName() );
+        this.aGui.println( this.aPlayer.getCurrentRoom().getLongDescription() );
+        if ( this.aPlayer.getCurrentRoom().getImageName() != null ){
+            this.aGui.showImage( this.aPlayer.getCurrentRoom().getImageName() );
         }
     } // printWelcome
     
@@ -181,9 +176,9 @@ public class GameEngine
      */
     private void printHelp()
     {
-        this.aGui.println( "You are lost. You are alone. You wander" );
-        this.aGui.println( "around at Monash Uni, Peninsula Campus.\n" );
-        this.aGui.println( "Your command words are: " + this.aParser.getCommandString() );
+        this.aGui.println( "Vous êtes perdu ? Vous êtes seul, les vendeurs sont occupés. Vous vous baladez" );
+        this.aGui.println( "dans la boutique SnowBeach.\n" );
+        this.aGui.println( "Les commandes disponibles sont: " + this.aParser.getCommandString() );
     } // printHelp
     
     
@@ -192,8 +187,39 @@ public class GameEngine
      */
     private void endGame()
     {
-        this.aGui.println( "Thank you for playing.  Good bye." );
+        this.aGui.println( "Merci d'avoir jouer. Au revoir." );
         this.aGui.enable( false );
+    }
+    
+    /**
+     * Quit the game
+     * 
+     * @param pCommand Commande
+     */
+    private void quit(final Command pCommand){
+        if ( pCommand.hasSecondWord() )
+            this.aGui.println( "Quit what?" );
+        else
+            this.endGame();
+    }
+    
+    /**
+     * Look at something
+     * 
+     * @param pCommand Commande
+     */
+    private void look(final Command pCommand){
+        if(pCommand.hasSecondWord()){
+            Item vRoomItem = this.aPlayer.getCurrentRoom().getItem(pCommand.getSecondWord());
+            
+            if(vRoomItem != null){
+                this.aGui.println( vRoomItem.getLongDescription() );
+            } else {
+                this.aGui.println("Je ne trouve pas ce que vous voulez regarder.");
+            }
+        } else {
+            this.aGui.println("Que voulez-vous regarder ?");
+        }
     }
     
     /**
@@ -209,62 +235,62 @@ public class GameEngine
         
         // Check if user input direction
         if ( ! pCommand.hasSecondWord() ) {
-            this.aGui.println( "Go where?" );
+            this.aGui.println( "Où voulez-vous aller?" );
             return;
         }
         
         // Navigate in specified direction
-        vNextRoom = this.aCurrentRoom.getExit(vDirection.toLowerCase());
+        vNextRoom = this.aPlayer.getCurrentRoom().getExit(vDirection.toLowerCase());
         
         if ( vNextRoom == null )
-            this.aGui.println( "There is no door!" );
+            this.aGui.println( "Vous ne pouvez pas aller dans cette direction!" );
         else {
-            if(pToSave){
-                //Ajout de la Room à l'historique
-                this.aDirectionHistory.push(vDirection);
-            }
+            this.aPlayer.changeRoom(vNextRoom, pToSave);
             
-            this.aCurrentRoom = vNextRoom;
-            this.aGui.println( this.aCurrentRoom.getLongDescription() );
-            if ( this.aCurrentRoom.getImageName() != null )
-                this.aGui.showImage( this.aCurrentRoom.getImageName() );
+            this.printLocationInfo();
         }
     } // goRoom
     
-    /**
-     * Return the opposite direction of the given direction
-     * 
-     * @param vDirection direction
-     * @return Opposite direction
-     */
-    private String getOppositeDirection(final String vDirection){
-        String vOppositeDirection;
-        
-        switch(vDirection){
-            case "north":
-                vOppositeDirection = "south";
-                break;
-            case "east":
-                vOppositeDirection = "west";
-                break;
-            case "south":
-                vOppositeDirection = "north";
-                break;
-            case "west":
-                vOppositeDirection = "east";
-                break;
-            case "up":
-                vOppositeDirection = "down";
-                break;
-            case "down":
-                vOppositeDirection = "up";
-                break;
-            default :
-                vOppositeDirection = "";
-                break;
+    private void back(final Command pCommand){
+        Command vGoOpposite = null;
+            
+        if ( pCommand.hasSecondWord() ){
+            this.aGui.println( "Back where ?" );
+        } else {
+            if(this.aPlayer.getPreviousRoom() != null){
+                this.aPlayer.back();
+                
+                this.printLocationInfo();
+            } else {
+                this.aGui.println( "Vous ne pouvez pas retourner en arrière." );
+            }
         }
-        
-        return vOppositeDirection;
+    }
+    
+    private void test(final Command pCommand){
+        if ( !pCommand.hasSecondWord() )
+            this.aGui.println( "Please input file to test." );
+        else {
+            String vFileName = pCommand.getSecondWord();
+            
+            if(!vFileName.endsWith(".txt")){
+                vFileName += ".txt";
+            }
+            
+            try{
+                Scanner vSr = new Scanner(new BufferedReader(new FileReader( vFileName )));
+                
+                String vCommandLine = "";
+                
+                while ( vSr.hasNextLine() ) {
+                    vCommandLine = vSr.nextLine();
+                    
+                    this.interpretCommand(vCommandLine);
+                } // while
+            } catch(final FileNotFoundException vFNFE){
+                System.err.println("File : " + vFileName + " not found.");
+            }
+        }
     }
     
     /**
@@ -290,60 +316,13 @@ public class GameEngine
         else if ( vCommandWord.equals( "go" ) )
             this.goRoom( vCommand, true );
         else if ( vCommandWord.equals( "back" ) ){
-            Command vGoOpposite = null;
-            
-            if ( vCommand.hasSecondWord() ){
-                this.aGui.println( "Back where ?" );
-            } else {
-                if(!this.aDirectionHistory.empty()){
-                    String vPreviousDirection = this.aDirectionHistory.peek();
-                
-                    String vOppositeDirection = this.getOppositeDirection(vPreviousDirection);
-                
-                    vGoOpposite = new Command("go", vOppositeDirection);
-                    
-                    this.goRoom( vGoOpposite, false );
-                    
-                    this.aDirectionHistory.pop();
-                } else {
-                    this.aGui.println( "Vous ne pouvez pas retourner en arrière." );
-                }
-            }
+            this.back(vCommand);
         } else if ( vCommandWord.equals( "quit" ) ) {
-            if ( vCommand.hasSecondWord() )
-                this.aGui.println( "Quit what?" );
-            else
-                this.endGame();
+            this.quit(vCommand);
         } else if ( vCommandWord.equals( "look" ) ) {
-            Item vRoomItem = this.aCurrentRoom.getItem(vCommand.getSecondWord());
-            
-            if(vCommand.hasSecondWord()){
-                this.aGui.println( vRoomItem.getLongDescription() );
-            }
+            this.look(vCommand);
         } else if ( vCommandWord.equals( "test" ) ) {
-            if ( !vCommand.hasSecondWord() )
-                this.aGui.println( "Please input file to test." );
-            else {
-                String vFileName = vCommand.getSecondWord();
-                
-                if(!vFileName.endsWith(".txt")){
-                    vFileName += ".txt";
-                }
-                
-                try{
-                    Scanner vSr = new Scanner(new BufferedReader(new FileReader( vFileName )));
-                    
-                    String vCommandLine = "";
-                    
-                    while ( vSr.hasNextLine() ) {
-                        vCommandLine = vSr.nextLine();
-                        
-                        this.interpretCommand(vCommandLine);
-                    } // while
-                } catch(final FileNotFoundException vFNFE){
-                    System.err.println("File : " + vFileName + " not found.");
-                }
-            }
+            this.test(vCommand);
         } else if ( vCommandWord.equals( "eat" ) ) {
             this.aGui.println( "Miam miam." );
         }
