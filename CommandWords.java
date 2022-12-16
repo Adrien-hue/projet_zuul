@@ -21,7 +21,10 @@ public class CommandWords
         "look",
         "eat",
         "back",
-        "test"
+        "test",
+        "take",
+        "drop",
+        "inventory"
     };
 
     /**

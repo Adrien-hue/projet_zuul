@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Stack;
+import java.util.Set;
 
 /**
  * Décrivez votre classe Player ici.
@@ -35,14 +36,15 @@ public class Player
     public Player(){
         this.aMaxWeight = 50;
         this.aRoomHistory = new Stack<Room>();
+        this.aInventory = new HashMap<String, Item>();
     }
     
     public void changeRoom(final Room pRoom, final boolean pToSave){
-        this.setCurrentRoom(pRoom);
-        
         if(pToSave){
-            this.aRoomHistory.push(pRoom);
+            this.aRoomHistory.push(this.aCurrentRoom);
         }
+        
+        this.setCurrentRoom(pRoom);
     }
     
     /**
@@ -51,7 +53,11 @@ public class Player
      * @return Room précédente
      */
     public Room getPreviousRoom(){
-        return this.aRoomHistory.peek();
+        if(this.aRoomHistory.empty()){
+            return null;
+        } else {
+            return this.aRoomHistory.peek();
+        }
     }
     
     /**
@@ -63,6 +69,49 @@ public class Player
         this.changeRoom(vPreviousRoom, false);
         
         this.aRoomHistory.pop();
+    }
+    
+    /**
+     * Take an Item in a Room
+     * 
+     * @param pItem Item to take
+     */
+    public void take(final Item pItem){
+        this.aCurrentRoom.deleteItem(pItem.getNom());
+        
+        this.aInventory.put(pItem.getNom(), pItem);
+    }
+    
+    /**
+     * Drop an Item in a Room
+     * 
+     * @param pItem Item to drop
+     */
+    public void drop(final Item pItem){
+        this.aInventory.remove(pItem.getNom());
+        
+        this.aCurrentRoom.addItem(pItem);
+    }
+    
+    /**
+     * Return the inventory string
+     * 
+     * @return Inventory
+     */
+    public String getInventoryString(){
+        StringBuilder vIventoryString = new StringBuilder("Inventaire :");
+        
+        if(this.aInventory.size() > 0){
+            Set<String> vKeys = this.aInventory.keySet();
+        
+            for(String item : vKeys){
+                vIventoryString.append(" " + item);
+            }
+        } else {
+            vIventoryString.append(" vide");
+        }
+        
+        return vIventoryString.toString();
     }
     
     /**
@@ -99,5 +148,15 @@ public class Player
      */
     public double getMaxWeight(){
         return this.aMaxWeight;
+    }
+    
+    /**
+     * Return the item in the current room
+     * 
+     * @param pItemName Item wanted
+     * @return The item in the current room
+     */
+    public Item getItem(final String pItemName){
+        return this.aInventory.get(pItemName);
     }
 }

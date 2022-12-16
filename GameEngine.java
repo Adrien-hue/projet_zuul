@@ -228,7 +228,7 @@ public class GameEngine
      * @param pCommand Command to navigate
      * @param pToSave Save or not the navigation
      */
-    private void goRoom(final Command pCommand, final boolean pToSave)
+    private void goRoom(final Command pCommand)
     {
         Room vNextRoom = null;
         String vDirection = pCommand.getSecondWord();
@@ -245,12 +245,17 @@ public class GameEngine
         if ( vNextRoom == null )
             this.aGui.println( "Vous ne pouvez pas aller dans cette direction!" );
         else {
-            this.aPlayer.changeRoom(vNextRoom, pToSave);
+            this.aPlayer.changeRoom(vNextRoom, true);
             
             this.printLocationInfo();
         }
     } // goRoom
     
+    /**
+     * Back into the previous Room
+     * 
+     * @param pCommand Commande to back
+     */
     private void back(final Command pCommand){
         Command vGoOpposite = null;
             
@@ -267,6 +272,11 @@ public class GameEngine
         }
     }
     
+    /**
+     * Test the game with file
+     * 
+     * @param pCommand
+     */
     private void test(final Command pCommand){
         if ( !pCommand.hasSecondWord() )
             this.aGui.println( "Please input file to test." );
@@ -294,6 +304,55 @@ public class GameEngine
     }
     
     /**
+     * Take an Item in a Room
+     * 
+     * @param pCommand Command to take the Item
+     */
+    private void takeItem(final Command pCommand){
+        if ( !pCommand.hasSecondWord() ){
+            this.aGui.println( "Que voulez vous que je prenne ?" );
+        } else {
+            Item vItem = this.aPlayer.getCurrentRoom().getItem(pCommand.getSecondWord());
+            
+            if(vItem != null){
+                this.aPlayer.take(vItem);
+                
+                this.aGui.println( "Vous prenez l'objet : " +  vItem.getNom());
+            } else {
+                this.aGui.println( "Je ne vois pas cet objet." );
+            }
+        }
+    }
+    
+    /**
+     * Drop an Item from the Player inventory
+     * 
+     * @param pCommand Command to drop the Item
+     */
+    private void dropItem(final Command pCommand){
+        if ( !pCommand.hasSecondWord() ){
+            this.aGui.println( "Que voulez vous que je pose ?" );
+        } else {
+            Item vItem = this.aPlayer.getItem(pCommand.getSecondWord());
+            
+            if(vItem != null){
+                this.aPlayer.drop(vItem);
+                
+                this.aGui.println( "Vous déposez l'objet : " +  vItem.getNom());
+            } else {
+                this.aGui.println( "Je n'ai pas cet objet sur moi." );
+            }
+        }
+    }
+    
+    /**
+     * Show inventory
+     */
+    private void showInventory(){
+        this.aGui.println(this.aPlayer.getInventoryString());
+    }
+    
+    /**
      * Given a command, process (that is: execute) the command.
      * If this command ends the game, true is returned, otherwise false is
      * returned.
@@ -314,7 +373,7 @@ public class GameEngine
         if ( vCommandWord.equals( "help" ) )
             this.printHelp();
         else if ( vCommandWord.equals( "go" ) )
-            this.goRoom( vCommand, true );
+            this.goRoom( vCommand );
         else if ( vCommandWord.equals( "back" ) ){
             this.back(vCommand);
         } else if ( vCommandWord.equals( "quit" ) ) {
@@ -325,6 +384,12 @@ public class GameEngine
             this.test(vCommand);
         } else if ( vCommandWord.equals( "eat" ) ) {
             this.aGui.println( "Miam miam." );
+        } else if ( vCommandWord.equals( "take" ) ) {
+            this.takeItem(vCommand);
+        } else if ( vCommandWord.equals( "drop" ) ) {
+            this.dropItem(vCommand);
+        } else if ( vCommandWord.equals( "inventory" ) ) {
+            this.showInventory();
         }
     }
 }

@@ -151,4 +151,13 @@ public class Room
     public void addItem(final Item pItem){
         this.aItems.put(pItem.getNom(), pItem);
     }
+    
+    /**
+     * delete a room item
+     * 
+     * @param pItem item to delete
+     */
+    public void deleteItem(final String pItemName){
+        this.aItems.remove(pItemName);
+    }
 } // Room
