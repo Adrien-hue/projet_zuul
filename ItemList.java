@@ -73,4 +73,19 @@ public class ItemList
     public int size(){
         return this.aItemList.size();
     }
+    
+    /**
+     * Retourne le poid total de l'ItemList
+     * 
+     * @return Poid de l'ItemList
+     */
+    public double getWeight(){
+        int vWeight = 0;
+        
+        for(Item vItem: this.aItemList.values()){
+            vWeight += vItem.getPoid();
+        }
+        
+        return vWeight;
+    }
 }

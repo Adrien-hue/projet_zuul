@@ -39,7 +39,7 @@ public class Player
      * Instanciate new default player
      */
     public Player(){
-        this.aMaxWeight = 50;
+        this.aMaxWeight = 1;
         this.aRoomHistory = new Stack<Room>();
         this.aInventory = new ItemList();
     }
@@ -144,6 +144,15 @@ public class Player
     }
     
     /**
+     * Retourne l'inventaire aInventory
+     * 
+     * @return L'inventaire aIventory
+     */
+    public ItemList getInventory(){
+        return this.aInventory;
+    }
+    
+    /**
      * Return the item in the current room
      * 
      * @param pItemName Item wanted
@@ -151,5 +160,14 @@ public class Player
      */
     public Item getItem(final String pItemName){
         return this.aInventory.getItem(pItemName);
+    }
+    
+    /**
+     * Retourne le poid de l'inventaire aInventory du Player
+     * 
+     * @return Poid de aInventory
+     */
+    public double getCurrentWeight(){
+        return this.aInventory.getWeight();
     }
 }

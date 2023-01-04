@@ -315,9 +315,13 @@ public class GameEngine
             Item vItem = this.aPlayer.getCurrentRoom().getItem(pCommand.getSecondWord());
             
             if(vItem != null){
-                this.aPlayer.take(vItem);
+                if(this.aPlayer.getMaxWeight() > (this.aPlayer.getCurrentWeight() + vItem.getPoid())){
+                    this.aPlayer.take(vItem);
                 
-                this.aGui.println( "Vous prenez l'objet : " +  vItem.getNom());
+                    this.aGui.println( "Vous prenez l'objet : " +  vItem.getNom());
+                } else {
+                    this.aGui.println( "Vous ne pouvez pas prendre cet objet car vous êtes trop lourd." );
+                }
             } else {
                 this.aGui.println( "Je ne vois pas cet objet." );
             }

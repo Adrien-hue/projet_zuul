@@ -74,7 +74,7 @@ public class Item
      * 
      * @param pPoid item weight
      */
-    public void getPoid(final double pPoid){
+    public void setPoid(final double pPoid){
         this.aPoid = pPoid;
     }
     
@@ -83,7 +83,7 @@ public class Item
      * 
      * @param pPrix item price
      */
-    public void getPrix(final double pPrix){
+    public void setPrix(final double pPrix){
         this.aPrix = pPrix;
     }
     

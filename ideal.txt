@@ -1,11 +1,10 @@
 go east
-look Roulement_classique
+take Roulement_classique
 go north
-look Roues_classiques
+take Roues_classiques
 back
 back
 go west
 go north
 go west
-look Planche-Girl
-quit
+take Planche-Girl
