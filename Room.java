@@ -60,7 +60,7 @@ public class Room
     public String getLongDescription(){
         StringBuilder vLongDescription = new StringBuilder("");
         
-        vLongDescription.append("You are " + this.getDescription());
+        vLongDescription.append("Vous êtes " + this.getDescription());
         vLongDescription.append("\r\n" + this.getExitString());
         if(this.aItems.size() > 0){
             vLongDescription.append("\r\n" + this.getItemString());
@@ -95,12 +95,12 @@ public class Room
      * @return String with available exits
      */
     public String getExitString(){
-        StringBuilder vExitString = new StringBuilder("Exits :");
+        StringBuilder vExitString = new StringBuilder("Sortie(s) :");
         
         Set<String> vKeys = this.aExits.keySet();
         
         for(String direction : vKeys){
-            vExitString.append(" " + direction);
+            vExitString.append("\r\n*\t" + direction);
         }
         
         return vExitString.toString();
@@ -112,7 +112,7 @@ public class Room
      * @return String with item in the current room
      */
     public String getItemString(){
-        return "Objet(s) : " + this.aItems.getItemListString();
+        return "Objet(s) :" + this.aItems.getItemListString();
     }
     
     /**

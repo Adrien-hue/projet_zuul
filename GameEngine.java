@@ -55,11 +55,11 @@ public class GameEngine
     {
         // Declare all the rooms
         Room vComptoir = new Room("au comptoir de le boutique.", "images/room_comptoir.jpg");
-        Room vCaisse = new Room("à la caisse de la boutique.", "");
-        Room vMiroir = new Room("face au miroir.", "");
-        Room vEscalierRdC = new Room("dans les escaliers au rez-de-chaussé.", "");
-        Room vEscalierSousSol = new Room("dans les escaliers au sous sol.", "");
-        Room vEscalierEtage = new Room("dans les escaliers à l'étage.", "");
+        Room vCaisse = new Room("à la caisse de la boutique.", "images/room_caisse.jpg");
+        Room vMiroir = new Room("face au miroir.", "images/room_mirroir.jpg");
+        Room vEscalierRdC = new Room("dans les escaliers au rez-de-chaussé.", "images/room_escalier.jpg");
+        Room vEscalierSousSol = new Room("dans les escaliers au sous sol.", "images/room_escalier.jpg");
+        Room vEscalierEtage = new Room("dans les escaliers à l'étage.", "images/room_escalier.jpg");
         
         Room vRayonPlanche = new Room("dans le rayon des plateaux de skateboard.", "images/room_planches.jpg");
         Room vRayonRoulement = new Room("dans le rayon des roulements.", "images/room_roulements.jpg");
@@ -70,11 +70,11 @@ public class GameEngine
         Room vRayonChaussure = new Room("dans le rayon des chaussures.", "images/room_chaussures.jpg");
         Room vRayonSac = new Room("dans le rayon des sacs.", "images/room_sacs.jpg");
         
-        Room vMiniRampe = new Room("dans la mini-rampe.", "");
-        Room vPartieStreet = new Room("dans la partie street.", "");
+        Room vMiniRampe = new Room("dans la mini-rampe.", "images/room_mini_rampe.jpg");
+        Room vPartieStreet = new Room("dans la partie street.", "images/room_street.jpg");
         
-        Room vReserve = new Room("dans la réserve.", "");
-        Room vToilettes= new Room("dans les toilettes.", "");
+        Room vReserve = new Room("dans la réserve.", "images/room_stock.jpg");
+        Room vToilettes= new Room("dans les toilettes.", "images/room_toilette.jpg");
 
         // Init exists for each rooms
         vComptoir.setExit("south", vCaisse);
@@ -169,10 +169,8 @@ public class GameEngine
         this.aGui.println( "C'est une boutique exceptionnel pour le skateboard." );
         this.aGui.println( "Tapez 'help' si vous avez besoin d'aide." );
         this.aGui.print( "\n" );
-        this.aGui.println( this.aPlayer.getCurrentRoom().getLongDescription() );
-        if ( this.aPlayer.getCurrentRoom().getImageName() != null ){
-            this.aGui.showImage( this.aPlayer.getCurrentRoom().getImageName() );
-        }
+        
+        this.printLocationInfo();
     } // printWelcome
     
     /**
@@ -202,7 +200,7 @@ public class GameEngine
      */
     private void quit(final Command pCommand){
         if ( pCommand.hasSecondWord() )
-            this.aGui.println( "Quit what?" );
+            this.aGui.println( "Que dois-je quitter?" );
         else
             this.endGame();
     }
@@ -222,7 +220,7 @@ public class GameEngine
                 this.aGui.println("Je ne trouve pas ce que vous voulez regarder.");
             }
         } else {
-            this.aGui.println("Que voulez-vous regarder ?");
+            this.aGui.println("Que voulez-vous que je regarde ?");
         }
     }
     
@@ -238,7 +236,7 @@ public class GameEngine
         
         // Check if user input direction
         if ( ! pCommand.hasSecondWord() ) {
-            this.aGui.println( "Où voulez-vous aller?" );
+            this.aGui.println( "Où dois-je aller?" );
             return;
         }
         
@@ -246,7 +244,7 @@ public class GameEngine
         vNextRoom = this.aPlayer.getCurrentRoom().getExit(vDirection.toLowerCase());
         
         if ( vNextRoom == null )
-            this.aGui.println( "Vous ne pouvez pas aller dans cette direction!" );
+            this.aGui.println( "Je ne peux pas aller dans cette direction!" );
         else {
             this.aPlayer.changeRoom(vNextRoom, true);
             
@@ -263,14 +261,14 @@ public class GameEngine
         Command vGoOpposite = null;
             
         if ( pCommand.hasSecondWord() ){
-            this.aGui.println( "Back where ?" );
+            this.aGui.println( "Où dois-je reculer ?" );
         } else {
             if(this.aPlayer.getPreviousRoom() != null){
                 this.aPlayer.back();
                 
                 this.printLocationInfo();
             } else {
-                this.aGui.println( "Vous ne pouvez pas retourner en arrière." );
+                this.aGui.println( "Je ne peux pas retourner en arrière." );
             }
         }
     }
@@ -282,7 +280,7 @@ public class GameEngine
      */
     private void test(final Command pCommand){
         if ( !pCommand.hasSecondWord() )
-            this.aGui.println( "Please input file to test." );
+            this.aGui.println( "Merci de renseigner la fichier de test." );
         else {
             String vFileName = pCommand.getSecondWord();
             
@@ -301,7 +299,7 @@ public class GameEngine
                     this.interpretCommand(vCommandLine);
                 } // while
             } catch(final FileNotFoundException vFNFE){
-                System.err.println("File : " + vFileName + " not found.");
+                System.err.println("Fichier : " + vFileName + " introuvable.");
             }
         }
     }
@@ -313,7 +311,7 @@ public class GameEngine
      */
     public void eat(final Command pCommand){
         if ( !pCommand.hasSecondWord() )
-            this.aGui.println( "Eat what ?" );
+            this.aGui.println( "Que dois-je manger ?" );
         else {
             Item vItem = this.aPlayer.getCurrentRoom().getItem(pCommand.getSecondWord());
             
@@ -346,9 +344,9 @@ public class GameEngine
                 if(this.aPlayer.getMaxWeight() > (this.aPlayer.getCurrentWeight() + vItem.getPoid())){
                     this.aPlayer.take(vItem);
                 
-                    this.aGui.println( "Vous prenez l'objet : " +  vItem.getNom());
+                    this.aGui.println( "Je prend l'objet : " +  vItem.getNom());
                 } else {
-                    this.aGui.println( "Vous ne pouvez pas prendre cet objet car vous êtes trop lourd." );
+                    this.aGui.println( "Je ne peux pas prendre cet objet car je suis trop lourd." );
                 }
             } else {
                 this.aGui.println( "Je ne vois pas cet objet." );
@@ -370,7 +368,7 @@ public class GameEngine
             if(vItem != null){
                 this.aPlayer.drop(vItem);
                 
-                this.aGui.println( "Vous déposez l'objet : " +  vItem.getNom());
+                this.aGui.println( "JE dépose l'objet : " +  vItem.getNom());
             } else {
                 this.aGui.println( "Je n'ai pas cet objet sur moi." );
             }
@@ -397,7 +395,7 @@ public class GameEngine
         Command vCommand = this.aParser.getCommand( pCommandLine );
 
         if ( vCommand.isUnknown() ) {
-            this.aGui.println( "I don't know what you mean..." );
+            this.aGui.println( "Je ne comprend pas ce que vous voulez dire..." );
             return;
         }
 

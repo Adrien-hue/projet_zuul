@@ -123,7 +123,7 @@ public class Player
      * @return Inventory
      */
     public String getInventoryString(){
-        return "Inventaire : (" + this.getCurrentWeight() + "/" + this.getMaxWeight() + ")\r\n" + this.aInventory.getItemListString();
+        return "Inventaire : (" + this.getCurrentWeight() + "/" + this.getMaxWeight() + ")" + this.aInventory.getItemListString();
     }
     
     /**

@@ -54,7 +54,7 @@ public class Item
      * @return Full description
      */
     public String getLongDescription(){
-        return this.getNom() + " : \n\tDescription : " + this.getDescription() + " : \n\tPoids : " + this.getPoid() + " : \n\tPrix : " + this.getPrix();
+        return this.getNom() + " : \n-\tDescription : " + this.getDescription() + "\n-\tPoids : " + this.getPoid() + "\n-\tPrix : " + this.getPrix();
     }
 
     /**

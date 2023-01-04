@@ -52,10 +52,10 @@ public class ItemList
             Set<String> vKeys = this.aItemList.keySet();
         
             for(String item : vKeys){
-                vIventoryString.append(" " + item);
+                vIventoryString.append("\r\n*\t" + item);
             }
         } else {
-            vIventoryString.append(" vide");
+            vIventoryString.append("\r\n*\tvide");
         }
         
         return vIventoryString.toString();
@@ -85,7 +85,7 @@ public class ItemList
      * @return Poid de l'ItemList
      */
     public double getWeight(){
-        int vWeight = 0;
+        double vWeight = 0.0;
         
         for(Item vItem: this.aItemList.values()){
             vWeight += vItem.getPoid();
