@@ -41,7 +41,7 @@ public class ItemList
     }
     
     public String getItemListString(){
-        StringBuilder vIventoryString = new StringBuilder("Inventaire :");
+        StringBuilder vIventoryString = new StringBuilder("");
         
         if(this.aItemList.size() > 0){
             Set<String> vKeys = this.aItemList.keySet();

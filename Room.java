@@ -112,7 +112,7 @@ public class Room
      * @return String with item in the current room
      */
     public String getItemString(){
-        return this.aItems.getItemListString();
+        return "Objet(s) : " + this.aItems.getItemListString();
     }
     
     /**

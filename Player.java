@@ -99,12 +99,25 @@ public class Player
     }
     
     /**
+     * Eat and Item
+     * 
+     * @param pItem Item to eat
+     */
+    public void eat(final Item pItem){
+        if(pItem.getNom().equals("Space_cookie")){
+            this.aMaxWeight *= 2;
+        }
+        
+        this.aCurrentRoom.deleteItem(pItem);
+    }
+    
+    /**
      * Return the inventory string
      * 
      * @return Inventory
      */
     public String getInventoryString(){
-        return this.aInventory.getItemListString();
+        return "Inventaire : (" + this.getCurrentWeight() + "/" + this.getMaxWeight() + ")\r\n" + this.aInventory.getItemListString();
     }
     
     /**

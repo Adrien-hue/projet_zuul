@@ -140,6 +140,10 @@ public class GameEngine
         Item vItemRoue = new Item("Roues_classiques", "Roues SpitFire", 0.3, 35);
         vRayonRoue.addItem(vItemRoue);
         
+        Item vItemSpaceCookie = new Item("Space_cookie", "Un cookie magique", 0.1, 0);
+        vItemSpaceCookie.setEatable(true);
+        vRayonSac.addItem(vItemSpaceCookie);
+        
         // Init starting room
         this.aPlayer.setCurrentRoom(vRayonCruiser);
     } // createRooms
@@ -304,6 +308,29 @@ public class GameEngine
     }
     
     /**
+     * Eat an Item from the Room
+     */
+    public void eat(final Command pCommand){
+        if ( !pCommand.hasSecondWord() )
+            this.aGui.println( "Eat what ?" );
+        else {
+            Item vItem = this.aPlayer.getCurrentRoom().getItem(pCommand.getSecondWord());
+            
+            if(vItem != null){
+                if(vItem.getEatable()){
+                    this.aPlayer.eat(vItem);
+                    
+                    this.aGui.println( "\"Nom Nom\" C'était bon." );
+                } else {
+                    this.aGui.println( "Je ne peux pas manger cet objet." );
+                }
+            } else {
+                this.aGui.println( "Je ne vois pas cet objet." );
+            }
+        }
+    }
+    
+    /**
      * Take an Item in a Room
      * 
      * @param pCommand Command to take the Item
@@ -387,7 +414,7 @@ public class GameEngine
         } else if ( vCommandWord.equals( "test" ) ) {
             this.test(vCommand);
         } else if ( vCommandWord.equals( "eat" ) ) {
-            this.aGui.println( "Miam miam." );
+            this.eat(vCommand);
         } else if ( vCommandWord.equals( "take" ) ) {
             this.takeItem(vCommand);
         } else if ( vCommandWord.equals( "drop" ) ) {

@@ -26,6 +26,11 @@ public class Item
      * Un double à portée privée
      */
     private double aPrix;
+    
+    /**
+     * Un boulean à portée privée
+     */
+    private boolean aEatable;
 
     /**
      * Create new Item instance
@@ -40,6 +45,7 @@ public class Item
         this.aDescription = pDescription;
         this.aPoid = pPoid;
         this.aPrix = pPrix;
+        this.aEatable = false;
     }
     
     /**
@@ -88,6 +94,15 @@ public class Item
     }
     
     /**
+     * Set current item eatable state
+     * 
+     * @param pEatable eatable state
+     */
+    public void setEatable(final boolean pEatable){
+        this.aEatable = pEatable;
+    }
+    
+    /**
      * Return current item name
      * 
      * @return current item name
@@ -121,5 +136,14 @@ public class Item
      */
     public double getPrix(){
         return this.aPrix;
+    }
+    
+    /**
+     * Return current item eatable state
+     * 
+     * @return Eatable state
+     */
+    public boolean getEatable(){
+        return this.aEatable;
     }
 }
