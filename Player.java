@@ -28,7 +28,12 @@ public class Player
     /**
      * Un tableau associatif (String -> Item) à portée privée
      */
-    private HashMap<String, Item> aInventory;
+    // private HashMap<String, Item> aInventory;
+    
+    /**
+     * Une liste d'Item
+     */
+    private ItemList aInventory;
     
     /**
      * Instanciate new default player
@@ -36,7 +41,7 @@ public class Player
     public Player(){
         this.aMaxWeight = 50;
         this.aRoomHistory = new Stack<Room>();
-        this.aInventory = new HashMap<String, Item>();
+        this.aInventory = new ItemList();
     }
     
     public void changeRoom(final Room pRoom, final boolean pToSave){
@@ -77,9 +82,9 @@ public class Player
      * @param pItem Item to take
      */
     public void take(final Item pItem){
-        this.aCurrentRoom.deleteItem(pItem.getNom());
+        this.aCurrentRoom.deleteItem(pItem);
         
-        this.aInventory.put(pItem.getNom(), pItem);
+        this.aInventory.addItem(pItem);
     }
     
     /**
@@ -88,7 +93,7 @@ public class Player
      * @param pItem Item to drop
      */
     public void drop(final Item pItem){
-        this.aInventory.remove(pItem.getNom());
+        this.aInventory.deleteItem(pItem);
         
         this.aCurrentRoom.addItem(pItem);
     }
@@ -99,19 +104,7 @@ public class Player
      * @return Inventory
      */
     public String getInventoryString(){
-        StringBuilder vIventoryString = new StringBuilder("Inventaire :");
-        
-        if(this.aInventory.size() > 0){
-            Set<String> vKeys = this.aInventory.keySet();
-        
-            for(String item : vKeys){
-                vIventoryString.append(" " + item);
-            }
-        } else {
-            vIventoryString.append(" vide");
-        }
-        
-        return vIventoryString.toString();
+        return this.aInventory.getItemListString();
     }
     
     /**
@@ -157,6 +150,6 @@ public class Player
      * @return The item in the current room
      */
     public Item getItem(final String pItemName){
-        return this.aInventory.get(pItemName);
+        return this.aInventory.getItem(pItemName);
     }
 }

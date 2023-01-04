@@ -26,7 +26,7 @@ public class Room
     /**
      * Un tableau associatif (String -> Item) à portée privée
      */
-    private HashMap<String, Item> aItems;
+    private ItemList aItems;
     
     /**
      * Create new Room instance with description and no exit
@@ -39,7 +39,7 @@ public class Room
         this.aDescription = pDescription;
         this.aExits = new HashMap<String, Room>();
         this.aImageName = pImage;
-        this.aItems = new HashMap<String, Item>();
+        this.aItems = new ItemList();
     } // Room
     
     /**
@@ -86,7 +86,7 @@ public class Room
      * @return The item in the current room
      */
     public Item getItem(final String pItemName){
-        return this.aItems.get(pItemName);
+        return this.aItems.getItem(pItemName);
     }
     
     /**
@@ -112,15 +112,7 @@ public class Room
      * @return String with item in the current room
      */
     public String getItemString(){
-        StringBuilder vItemString = new StringBuilder("Items :");
-        
-        Set<String> vKeys = this.aItems.keySet();
-        
-        for(String item : vKeys){
-            vItemString.append(" " + item);;
-        }
-        
-        return vItemString.toString();
+        return this.aItems.getItemListString();
     }
     
     /**
@@ -149,7 +141,7 @@ public class Room
      * @param pItem item to set
      */
     public void addItem(final Item pItem){
-        this.aItems.put(pItem.getNom(), pItem);
+        this.aItems.addItem(pItem);
     }
     
     /**
@@ -157,7 +149,7 @@ public class Room
      * 
      * @param pItem item to delete
      */
-    public void deleteItem(final String pItemName){
-        this.aItems.remove(pItemName);
+    public void deleteItem(final Item pItem){
+        this.aItems.deleteItem(pItem);
     }
 } // Room
