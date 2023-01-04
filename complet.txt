@@ -7,14 +7,21 @@ go west
 go north
 go west
 look Planche-Girl
+take Planche-Girl
+drop Planche-Girl
 look Planche-Plan_B
+take Planche-Plan_B
 back
 back
 back
 go east
 look Roulement_classique
+take Roulement_classique
+drop Roulement_classique
 go north
 look Roues_classiques
+take Roues_classiques
+drop Roues_classiques
 go north
 go west
 go south
