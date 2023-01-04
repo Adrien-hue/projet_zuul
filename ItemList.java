@@ -40,6 +40,11 @@ public class ItemList
         return this.aItemList.get(pItemName);
     }
     
+    /**
+     * Return the String with Items name
+     * 
+     * @return String with Items name
+     */
     public String getItemListString(){
         StringBuilder vIventoryString = new StringBuilder("");
         

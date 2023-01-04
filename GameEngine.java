@@ -230,7 +230,6 @@ public class GameEngine
      * Navigate into a room
      * 
      * @param pCommand Command to navigate
-     * @param pToSave Save or not the navigation
      */
     private void goRoom(final Command pCommand)
     {
@@ -279,7 +278,7 @@ public class GameEngine
     /**
      * Test the game with file
      * 
-     * @param pCommand
+     * @param pCommand Command to test the game
      */
     private void test(final Command pCommand){
         if ( !pCommand.hasSecondWord() )
@@ -309,6 +308,8 @@ public class GameEngine
     
     /**
      * Eat an Item from the Room
+     * 
+     * @param pCommand Command to eat the Item
      */
     public void eat(final Command pCommand){
         if ( !pCommand.hasSecondWord() )

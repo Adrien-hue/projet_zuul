@@ -44,6 +44,12 @@ public class Player
         this.aInventory = new ItemList();
     }
     
+    /**
+     * Change the current roome of the player
+     * 
+     * @param pRoom New Room to set
+     * @param pToSave true to save this change, else false
+     */
     public void changeRoom(final Room pRoom, final boolean pToSave){
         if(pToSave){
             this.aRoomHistory.push(this.aCurrentRoom);
