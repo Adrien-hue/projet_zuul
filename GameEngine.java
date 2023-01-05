@@ -28,6 +28,16 @@ public class GameEngine
     private UserInterface aGui;
     
     /**
+     * Un int à portée privée
+     */
+    private int aCountMouv;
+    
+    /**
+     * Un int à portée privée
+     */
+    static final int MAX_MOUV = 50;
+    
+    /**
      * Constructor for objects of class GameEngine
      */
     public GameEngine()
@@ -35,6 +45,7 @@ public class GameEngine
         this.aParser = new Parser();
         this.aPlayer = new Player();
         this.createRooms();
+        this.aCountMouv = 0;
     }
 
     /**
@@ -249,6 +260,8 @@ public class GameEngine
             this.aPlayer.changeRoom(vNextRoom, true);
             
             this.printLocationInfo();
+            
+            this.aCountMouv++;
         }
     } // goRoom
     
@@ -267,6 +280,8 @@ public class GameEngine
                 this.aPlayer.back();
                 
                 this.printLocationInfo();
+                
+                this.aCountMouv++;
             } else {
                 this.aGui.println( "Je ne peux pas retourner en arrière." );
             }
@@ -381,6 +396,18 @@ public class GameEngine
     private void showInventory(){
         this.aGui.println(this.aPlayer.getInventoryString());
     }
+
+    /**
+     * Lose the game
+     */
+    private void gameLose(){
+        this.aGui.println("J'ai fait trop de déplacement je suis fatigué.");
+        this.aGui.println("**********************************************");
+        this.aGui.println("**************   GAME OVER   ****************");
+        this.aGui.println("**********************************************");
+        
+        this.endGame();
+    }
     
     /**
      * Given a command, process (that is: execute) the command.
@@ -420,6 +447,11 @@ public class GameEngine
             this.dropItem(vCommand);
         } else if ( vCommandWord.equals( "inventory" ) ) {
             this.showInventory();
+        }
+        
+        // Cas où la partie est perdue
+        if((vCommandWord.equals("go") || vCommandWord.equals("back")) && this.aCountMouv > GameEngine.MAX_MOUV){
+            this.gameLose();
         }
     }
 }
