@@ -83,6 +83,15 @@ public class Player
     }
     
     /**
+     * Vide la stack contenant l'historique des déplacement du joueur
+     */
+    public void clearRoomHistory(){
+        while(!this.aRoomHistory.empty()){
+            this.aRoomHistory.pop();
+        }
+    }
+    
+    /**
      * Take an Item in a Room
      * 
      * @param pItem Item to take

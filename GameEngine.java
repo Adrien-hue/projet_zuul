@@ -97,6 +97,7 @@ public class GameEngine
         vMiroir.setExit("south", vRayonHoodie);
         vMiroir.setExit("east", vEscalierRdC);
         vMiroir.setExit("west", vRayonChaussure);
+        vMiroir.setExit("down", vMiniRampe);
         
         vEscalierRdC.setExit("south", vRayonRoue);
         vEscalierRdC.setExit("west", vMiroir);
@@ -243,6 +244,8 @@ public class GameEngine
     private void goRoom(final Command pCommand)
     {
         Room vNextRoom = null;
+        Room vCurrentRoom = this.aPlayer.getCurrentRoom();
+        boolean vToSave = true;
         String vDirection = pCommand.getSecondWord();
         
         // Check if user input direction
@@ -252,12 +255,18 @@ public class GameEngine
         }
         
         // Navigate in specified direction
-        vNextRoom = this.aPlayer.getCurrentRoom().getExit(vDirection.toLowerCase());
+        vNextRoom = vCurrentRoom.getExit(vDirection.toLowerCase());
         
         if ( vNextRoom == null )
             this.aGui.println( "Je ne peux pas aller dans cette direction!" );
         else {
-            this.aPlayer.changeRoom(vNextRoom, true);
+            if(!vNextRoom.isExit(vCurrentRoom)){
+                vToSave = false;
+                
+                this.aPlayer.clearRoomHistory();
+            }
+            
+            this.aPlayer.changeRoom(vNextRoom, vToSave);
             
             this.printLocationInfo();
             

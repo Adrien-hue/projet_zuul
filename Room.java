@@ -152,4 +152,14 @@ public class Room
     public void deleteItem(final Item pItem){
         this.aItems.deleteItem(pItem);
     }
+    
+    /**
+     * Check if the current Room contains pRoom 
+     * 
+     * @param pRoom Room to check
+     * @return true if the current Room's exits contains pRoom, else false
+     */
+    public boolean isExit(final Room pRoom){
+        return this.aExits.containsValue(pRoom);
+    }
 } // Room
