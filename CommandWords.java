@@ -24,7 +24,9 @@ public class CommandWords
         "test",
         "take",
         "drop",
-        "inventory"
+        "inventory",
+        "setBeamer",
+        "useBeamer"
     };
 
     /**

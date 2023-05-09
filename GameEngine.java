@@ -156,6 +156,9 @@ public class GameEngine
         vItemSpaceCookie.setEatable(true);
         vRayonSac.addItem(vItemSpaceCookie);
         
+        Beamer vBeamer = new Beamer("Teleporteur", "Un téléporteur qui pourra vous emmener dans une pièce que vous avez déjà visitée", 0.5, 0);
+        vRayonCruiser.addItem(vBeamer);
+        
         // Init starting room
         this.aPlayer.setCurrentRoom(vRayonCruiser);
     } // createRooms
@@ -419,6 +422,60 @@ public class GameEngine
     }
     
     /**
+     * Set the Beamer destination
+     * 
+     * @param pCommand Command to set the Beamer
+     */
+    private void setBeamer(final Command pCommand){
+        this.aGui.println("Comment fonctionne cette technologie ?");
+        return;
+        
+        // if(!pCommand.hasSecondWord()){
+            // this.aGui.println("Quel téléporteur dois-je initialiser?");
+        // } else {
+            // String vBeamerName = pCommand.getSecondWord();
+            // Beamer vBeamer = (Beamer) this.aPlayer.getItem(vBeamerName);
+            
+            // if(vBeamer != null){
+                // Initialiser le Beamer avec la Room courrante
+            // } else {
+                // this.aGui.println("Je ne trouve pas ce téléporteur.");
+            // }
+        // }
+    }
+    
+    /**
+     * Use the Beamer to teleport the player to the destination
+     * 
+     * @param pCommand Command to use the Beamer
+     */
+    private void useBeamer(final Command pCommand){
+        this.aGui.println("Comment fonctionne cette technologie ?");
+        return;
+        
+        // if(!pCommand.hasSecondWord()){
+            // this.aGui.println("Quel téléporteur dois-je utiliser?");
+        // } else {
+            // String vBeamerName = pCommand.getSecondWord();
+            // Beamer vBeamer = (Beamer)this.aPlayer.getItem(vBeamerName);
+            
+            // if(vBeamer != null){
+                // if(vBeamer.isInit()){
+                    // Room vDestination = vBeamer.getDestination();
+                    
+                    // this.aPlayer.setCurrentRoom(vDestination);
+                    
+                    // this.aPlayer.clearRoomHistory();
+                // } else {
+                    // this.aGui.println("Ce téléporteur n'est pas initialiser...");
+                // }
+            // } else {
+                // this.aGui.println("Je ne trouve pas ce téléporteur.");
+            // }
+        // }
+    }
+    
+    /**
      * Given a command, process (that is: execute) the command.
      * If this command ends the game, true is returned, otherwise false is
      * returned.
@@ -456,6 +513,10 @@ public class GameEngine
             this.dropItem(vCommand);
         } else if ( vCommandWord.equals( "inventory" ) ) {
             this.showInventory();
+        } else if ( vCommandWord.equals( "setBeamer" ) ) {
+            this.setBeamer(vCommand);
+        } else if ( vCommandWord.equals( "useBeamer" ) ) {
+            this.useBeamer(vCommand);
         }
         
         // Cas où la partie est perdue
